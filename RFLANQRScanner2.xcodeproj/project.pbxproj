@@ -23,10 +23,8 @@
 		22699FD1181105DC00F5C93E /* Beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22699FC8181105DC00F5C93E /* Beep.wav */; };
 		22699FD2181105DC00F5C93E /* Fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22699FC9181105DC00F5C93E /* Fail.wav */; };
 		22699FD3181105DC00F5C93E /* FailIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22699FCA181105DC00F5C93E /* FailIcon@2x.png */; };
-		22699FD4181105DC00F5C93E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22699FCB181105DC00F5C93E /* Images.xcassets */; };
 		22699FD5181105DC00F5C93E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22699FCC181105DC00F5C93E /* main.m */; };
 		22699FD6181105DC00F5C93E /* RFLANLogoHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22699FCD181105DC00F5C93E /* RFLANLogoHeader@2x.png */; };
-		22699FD7181105DC00F5C93E /* RFLANQRScanner2-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22699FCE181105DC00F5C93E /* RFLANQRScanner2-Info.plist */; };
 		22699FDB181105E700F5C93E /* Success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22699FD8181105E700F5C93E /* Success.wav */; };
 		22699FDC181105E700F5C93E /* SuccessIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22699FD9181105E700F5C93E /* SuccessIcon@2x.png */; };
 		22699FDD181105E700F5C93E /* Unsure.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22699FDA181105E700F5C93E /* Unsure.wav */; };
@@ -68,7 +66,6 @@
 		22699FC8181105DC00F5C93E /* Beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep.wav; sourceTree = SOURCE_ROOT; };
 		22699FC9181105DC00F5C93E /* Fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Fail.wav; sourceTree = SOURCE_ROOT; };
 		22699FCA181105DC00F5C93E /* FailIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FailIcon@2x.png"; sourceTree = SOURCE_ROOT; };
-		22699FCB181105DC00F5C93E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = SOURCE_ROOT; };
 		22699FCC181105DC00F5C93E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
 		22699FCD181105DC00F5C93E /* RFLANLogoHeader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RFLANLogoHeader@2x.png"; sourceTree = SOURCE_ROOT; };
 		22699FCE181105DC00F5C93E /* RFLANQRScanner2-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RFLANQRScanner2-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -157,7 +154,6 @@
 				22699FC8181105DC00F5C93E /* Beep.wav */,
 				22699FC9181105DC00F5C93E /* Fail.wav */,
 				22699FCA181105DC00F5C93E /* FailIcon@2x.png */,
-				22699FCB181105DC00F5C93E /* Images.xcassets */,
 				22699FCC181105DC00F5C93E /* main.m */,
 				22699FCD181105DC00F5C93E /* RFLANLogoHeader@2x.png */,
 				22699FCE181105DC00F5C93E /* RFLANQRScanner2-Info.plist */,
@@ -293,8 +289,6 @@
 				22699FDB181105E700F5C93E /* Success.wav in Resources */,
 				22699FD3181105DC00F5C93E /* FailIcon@2x.png in Resources */,
 				22699FD1181105DC00F5C93E /* Beep.wav in Resources */,
-				22699FD7181105DC00F5C93E /* RFLANQRScanner2-Info.plist in Resources */,
-				22699FD4181105DC00F5C93E /* Images.xcassets in Resources */,
 				22699FDD181105E700F5C93E /* Unsure.wav in Resources */,
 				22699FE11811061600F5C93E /* Images.xcassets in Resources */,
 				22699FD0181105DC00F5C93E /* BackgroundImage@2x.png in Resources */,
