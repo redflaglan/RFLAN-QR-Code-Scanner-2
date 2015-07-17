@@ -25,6 +25,9 @@
 #import "RFLToolbar.h"
 #import "RFLPrivateCredentials.h"
 
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 @interface RFLAppDelegate ()
 
 - (void)setUpSettings;
@@ -35,6 +38,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Fabric with:@[CrashlyticsKit]];
+    
     //Set up the settings
     [self setUpSettings];
     
@@ -42,7 +47,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     
     //Make sure any navigation bars created have the red appearance
-    [[RFLNavigationBar appearance] setBarTintColor:[UIColor colorWithRed:220.0f/255.0f green:30.0f/255.0f blue:20.0f/255.0f alpha:1.0f]];
+    [[RFLNavigationBar appearance] setBarTintColor:[UIColor colorWithRed:220.0f/255.0f green:30.0f/255.0f blue:20.0f/255.0f alpha:0.55f]];
     [[RFLNavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     
