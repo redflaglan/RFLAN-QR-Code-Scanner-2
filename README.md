@@ -1,7 +1,7 @@
 # RFLAN QR Code Scanner App
 #### A utility app created to quickly sign in lanners attending the Redflag Lanfest events in Perth, Western Australia
 
-![QR Code Scanner on iPod touch](https://raw.github.com/TimOliver/RFLAN-QR-Code-Scanner-2/master/Screenshots/RFLAN_QR_Scanner.jpg)
+![QR Code Scanner on iPod touch](Screenshots/RFLAN_QR_Scanner.jpg)
 
 ## WTF is this thing?
 
