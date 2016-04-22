@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RFLANQRScanner2/Controllers/RFLScannerViewController.m"
-            timestampString = "403762098.070116"
+            timestampString = "483029296.652984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
-            landmarkName = "@implementation RFLScannerViewController"
-            landmarkType = "3">
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "-historyButtonTapped:"
+            landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -24,6 +24,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "-[RFLScannerViewController triggerTimer]"
                   moduleName = "RFLANQRScanner2"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file://localhost/Users/TiM/Dropbox/Projects/RFLAN-QR-Scanner-2/RFLANQRScanner2/Controllers/RFLScannerViewController.m"
                   timestampString = "403685224.680209"
                   startingColumnNumber = "9223372036854775807"
@@ -38,6 +39,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "-[RFLScannerViewController triggerTimer]"
                   moduleName = "RFLANQRScanner2"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file://localhost/Users/TiM/Dropbox/Projects/RFLAN-QR-Scanner-2/RFLANQRScanner2/Controllers/RFLScannerViewController.m"
                   timestampString = "403685224.680431"
                   startingColumnNumber = "9223372036854775807"
@@ -56,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RFLANQRScanner2/Controllers/RFLScannerViewController.m"
-            timestampString = "403762098.070116"
+            timestampString = "483029296.652984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
-            landmarkName = "-triggerTimer"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "-settingsButtonTapped:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -72,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RFLANQRScanner2/Controllers/RFLScannerViewController.m"
-            timestampString = "403762098.070116"
+            timestampString = "483029296.652984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "383"
-            endingLineNumber = "383"
-            landmarkName = "-barcodeOverlayLayerForPath:withColor:"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
+            landmarkName = "-createPathForPoints:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -88,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RFLANQRScanner2/Controllers/RFLScannerViewController.m"
-            timestampString = "403762098.070116"
+            timestampString = "483029296.652984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
-            landmarkName = "+overlayColor"
+            startingLineNumber = "456"
+            endingLineNumber = "456"
+            landmarkName = "-removeAllSublayersFromLayer:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -248,12 +250,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RFLANQRScanner2/Controllers/RFLScannerViewController.m"
-            timestampString = "403762098.070116"
+            timestampString = "483029296.652984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "-handleTap:"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "-soundNamed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -264,12 +266,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RFLANQRScanner2/Controllers/RFLScannerViewController.m"
-            timestampString = "403762098.070116"
+            timestampString = "483029296.652984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
-            landmarkName = "-triggerTimer"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "-settingsButtonTapped:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -280,12 +282,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RFLANQRScanner2/Controllers/RFLScannerViewController.m"
-            timestampString = "403762098.070116"
+            timestampString = "483029296.652984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "-triggerTimer"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "-historyButtonTapped:"
             landmarkType = "5">
             <Locations>
                <Location
@@ -294,6 +296,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "-[RFLScannerViewController triggerTimer]"
                   moduleName = "RFLANQRScanner2"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file://localhost/Users/TiM/Dropbox/Projects/RFLAN-QR-Scanner-2/RFLANQRScanner2/Controllers/RFLScannerViewController.m"
                   timestampString = "403756707.041272"
                   startingColumnNumber = "9223372036854775807"
@@ -308,6 +311,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "-[RFLScannerViewController triggerTimer]"
                   moduleName = "RFLANQRScanner2"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file://localhost/Users/TiM/Dropbox/Projects/RFLAN-QR-Scanner-2/RFLANQRScanner2/Controllers/RFLScannerViewController.m"
                   timestampString = "403756707.041533"
                   startingColumnNumber = "9223372036854775807"
@@ -322,6 +326,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "-[RFLScannerViewController triggerTimer]"
                   moduleName = "RFLANQRScanner2"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file://localhost/Users/TiM/Dropbox/Projects/RFLAN-QR-Scanner-2/RFLANQRScanner2/Controllers/RFLScannerViewController.m"
                   timestampString = "403756707.04182"
                   startingColumnNumber = "9223372036854775807"

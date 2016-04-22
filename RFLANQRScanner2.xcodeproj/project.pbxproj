@@ -7,84 +7,60 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F80E6A77B13595FFBFB1CC5 /* libPods-RFLANQRScanner2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D394C98BE140FD77E866AB9 /* libPods-RFLANQRScanner2.a */; };
+		22013F861CCA6313000F79B5 /* RFLScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22013F7B1CCA6313000F79B5 /* RFLScannerViewController.m */; };
+		22013F871CCA6313000F79B5 /* RFLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22013F7D1CCA6313000F79B5 /* RFLSettingsViewController.m */; };
+		22013F881CCA6313000F79B5 /* APLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22013F801CCA6313000F79B5 /* APLSessionManager.m */; };
+		22013F891CCA6313000F79B5 /* RFLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 22013F831CCA6313000F79B5 /* RFLNavigationBar.m */; };
+		22013F8A1CCA6313000F79B5 /* RFLToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 22013F851CCA6313000F79B5 /* RFLToolbar.m */; };
+		22013F8E1CCA633A000F79B5 /* RFLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22013F8D1CCA633A000F79B5 /* RFLAppDelegate.m */; };
+		22013F9E1CCA6680000F79B5 /* Beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22013F931CCA6680000F79B5 /* Beep.wav */; };
+		22013F9F1CCA6680000F79B5 /* Fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22013F941CCA6680000F79B5 /* Fail.wav */; };
+		22013FA11CCA6680000F79B5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22013F961CCA6680000F79B5 /* LaunchScreen.xib */; };
+		22013FA41CCA6680000F79B5 /* Success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22013F991CCA6680000F79B5 /* Success.wav */; };
+		22013FA51CCA6680000F79B5 /* SuccessIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22013F9A1CCA6680000F79B5 /* SuccessIcon@2x.png */; };
+		22013FA61CCA6680000F79B5 /* Unsure.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22013F9B1CCA6680000F79B5 /* Unsure.wav */; };
+		22013FA81CCA6688000F79B5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22013FA71CCA6688000F79B5 /* Images.xcassets */; };
+		22013FAD1CCA66A2000F79B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22013FAA1CCA66A2000F79B5 /* main.m */; };
+		22013FAE1CCA66A2000F79B5 /* RFLANQRScanner2-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22013FAB1CCA66A2000F79B5 /* RFLANQRScanner2-Info.plist */; };
 		22022491180EEB91001BE803 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22022490180EEB91001BE803 /* Foundation.framework */; };
 		22022493180EEB91001BE803 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22022492180EEB91001BE803 /* CoreGraphics.framework */; };
 		22022495180EEB91001BE803 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22022494180EEB91001BE803 /* UIKit.framework */; };
-		22443DC31B58DA810029A86B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22443DC21B58DA810029A86B /* LaunchScreen.xib */; };
-		22443DC71B58DEFC0029A86B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22443DC51B58DEFC0029A86B /* Fabric.framework */; };
-		22443DC81B58DEFC0029A86B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22443DC61B58DEFC0029A86B /* Crashlytics.framework */; };
-		22699FD1181105DC00F5C93E /* Beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22699FC8181105DC00F5C93E /* Beep.wav */; };
-		22699FD2181105DC00F5C93E /* Fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22699FC9181105DC00F5C93E /* Fail.wav */; };
-		22699FD5181105DC00F5C93E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22699FCC181105DC00F5C93E /* main.m */; };
-		22699FDB181105E700F5C93E /* Success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22699FD8181105E700F5C93E /* Success.wav */; };
-		22699FDD181105E700F5C93E /* Unsure.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22699FDA181105E700F5C93E /* Unsure.wav */; };
-		22699FE11811061600F5C93E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22699FDE1811061600F5C93E /* Images.xcassets */; };
-		22699FE21811061600F5C93E /* RFLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22699FE01811061600F5C93E /* RFLAppDelegate.m */; };
-		22699FF11811062800F5C93E /* RFLScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22699FE51811062800F5C93E /* RFLScannerViewController.m */; };
-		22699FF21811062800F5C93E /* RFLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22699FE71811062800F5C93E /* RFLSettingsViewController.m */; };
-		22699FF31811062800F5C93E /* APLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22699FEA1811062800F5C93E /* APLSessionManager.m */; };
-		22699FF51811062800F5C93E /* RFLToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 22699FF01811062800F5C93E /* RFLToolbar.m */; };
-		22BF886519DE295600DB29EB /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF885319DE295600DB29EB /* AFHTTPRequestOperation.m */; };
-		22BF886619DE295600DB29EB /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF885519DE295600DB29EB /* AFHTTPRequestOperationManager.m */; };
-		22BF886719DE295600DB29EB /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF885719DE295600DB29EB /* AFHTTPSessionManager.m */; };
-		22BF886819DE295600DB29EB /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF885A19DE295600DB29EB /* AFNetworkReachabilityManager.m */; };
-		22BF886919DE295600DB29EB /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF885C19DE295600DB29EB /* AFSecurityPolicy.m */; };
-		22BF886A19DE295600DB29EB /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF885E19DE295600DB29EB /* AFURLConnectionOperation.m */; };
-		22BF886B19DE295600DB29EB /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF886019DE295600DB29EB /* AFURLRequestSerialization.m */; };
-		22BF886C19DE295600DB29EB /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF886219DE295600DB29EB /* AFURLResponseSerialization.m */; };
-		22BF886D19DE295600DB29EB /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF886419DE295600DB29EB /* AFURLSessionManager.m */; };
-		22D3CC00190AAFD500EE994B /* RFLNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D3CBFF190AAFD500EE994B /* RFLNavigationBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22013F7A1CCA6313000F79B5 /* RFLScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLScannerViewController.h; sourceTree = "<group>"; };
+		22013F7B1CCA6313000F79B5 /* RFLScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLScannerViewController.m; sourceTree = "<group>"; };
+		22013F7C1CCA6313000F79B5 /* RFLSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLSettingsViewController.h; sourceTree = "<group>"; };
+		22013F7D1CCA6313000F79B5 /* RFLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLSettingsViewController.m; sourceTree = "<group>"; };
+		22013F7F1CCA6313000F79B5 /* APLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLSessionManager.h; sourceTree = "<group>"; };
+		22013F801CCA6313000F79B5 /* APLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLSessionManager.m; sourceTree = "<group>"; };
+		22013F821CCA6313000F79B5 /* RFLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLNavigationBar.h; sourceTree = "<group>"; };
+		22013F831CCA6313000F79B5 /* RFLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLNavigationBar.m; sourceTree = "<group>"; };
+		22013F841CCA6313000F79B5 /* RFLToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLToolbar.h; sourceTree = "<group>"; };
+		22013F851CCA6313000F79B5 /* RFLToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLToolbar.m; sourceTree = "<group>"; };
+		22013F8C1CCA633A000F79B5 /* RFLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLAppDelegate.h; sourceTree = "<group>"; };
+		22013F8D1CCA633A000F79B5 /* RFLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLAppDelegate.m; sourceTree = "<group>"; };
+		22013F8F1CCA664E000F79B5 /* RFLPrivateCredentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFLPrivateCredentials.h; sourceTree = "<group>"; };
+		22013F931CCA6680000F79B5 /* Beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep.wav; sourceTree = "<group>"; };
+		22013F941CCA6680000F79B5 /* Fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Fail.wav; sourceTree = "<group>"; };
+		22013F961CCA6680000F79B5 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		22013F991CCA6680000F79B5 /* Success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Success.wav; sourceTree = "<group>"; };
+		22013F9A1CCA6680000F79B5 /* SuccessIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SuccessIcon@2x.png"; sourceTree = "<group>"; };
+		22013F9B1CCA6680000F79B5 /* Unsure.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Unsure.wav; sourceTree = "<group>"; };
+		22013FA71CCA6688000F79B5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		22013FAA1CCA66A2000F79B5 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		22013FAB1CCA66A2000F79B5 /* RFLANQRScanner2-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RFLANQRScanner2-Info.plist"; sourceTree = "<group>"; };
+		22013FAC1CCA66A2000F79B5 /* RFLANQRScanner2-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RFLANQRScanner2-Prefix.pch"; sourceTree = "<group>"; };
 		2202248D180EEB91001BE803 /* RFLANQRScanner2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RFLANQRScanner2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22022490180EEB91001BE803 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		22022492180EEB91001BE803 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		22022494180EEB91001BE803 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		220224A9180EEB91001BE803 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		22443DC21B58DA810029A86B /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
-		22443DC51B58DEFC0029A86B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		22443DC61B58DEFC0029A86B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		22699FC8181105DC00F5C93E /* Beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beep.wav; sourceTree = SOURCE_ROOT; };
-		22699FC9181105DC00F5C93E /* Fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Fail.wav; sourceTree = SOURCE_ROOT; };
-		22699FCC181105DC00F5C93E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
-		22699FCE181105DC00F5C93E /* RFLANQRScanner2-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RFLANQRScanner2-Info.plist"; sourceTree = SOURCE_ROOT; };
-		22699FCF181105DC00F5C93E /* RFLANQRScanner2-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RFLANQRScanner2-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		22699FD8181105E700F5C93E /* Success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Success.wav; sourceTree = SOURCE_ROOT; };
-		22699FDA181105E700F5C93E /* Unsure.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Unsure.wav; sourceTree = SOURCE_ROOT; };
-		22699FDE1811061600F5C93E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = SOURCE_ROOT; };
-		22699FDF1811061600F5C93E /* RFLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLAppDelegate.h; sourceTree = SOURCE_ROOT; };
-		22699FE01811061600F5C93E /* RFLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLAppDelegate.m; sourceTree = SOURCE_ROOT; };
-		22699FE41811062800F5C93E /* RFLScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLScannerViewController.h; sourceTree = "<group>"; };
-		22699FE51811062800F5C93E /* RFLScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLScannerViewController.m; sourceTree = "<group>"; };
-		22699FE61811062800F5C93E /* RFLSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLSettingsViewController.h; sourceTree = "<group>"; };
-		22699FE71811062800F5C93E /* RFLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLSettingsViewController.m; sourceTree = "<group>"; };
-		22699FE91811062800F5C93E /* APLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLSessionManager.h; sourceTree = "<group>"; };
-		22699FEA1811062800F5C93E /* APLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLSessionManager.m; sourceTree = "<group>"; };
-		22699FEB1811062800F5C93E /* RFLPrivateCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLPrivateCredentials.h; sourceTree = "<group>"; };
-		22699FEF1811062800F5C93E /* RFLToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLToolbar.h; sourceTree = "<group>"; };
-		22699FF01811062800F5C93E /* RFLToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLToolbar.m; sourceTree = "<group>"; };
-		22BF885219DE295600DB29EB /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
-		22BF885319DE295600DB29EB /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
-		22BF885419DE295600DB29EB /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
-		22BF885519DE295600DB29EB /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
-		22BF885619DE295600DB29EB /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		22BF885719DE295600DB29EB /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		22BF885819DE295600DB29EB /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
-		22BF885919DE295600DB29EB /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		22BF885A19DE295600DB29EB /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		22BF885B19DE295600DB29EB /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
-		22BF885C19DE295600DB29EB /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
-		22BF885D19DE295600DB29EB /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
-		22BF885E19DE295600DB29EB /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
-		22BF885F19DE295600DB29EB /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		22BF886019DE295600DB29EB /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
-		22BF886119DE295600DB29EB /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
-		22BF886219DE295600DB29EB /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		22BF886319DE295600DB29EB /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
-		22BF886419DE295600DB29EB /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		22D3CBFE190AAFD500EE994B /* RFLNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLNavigationBar.h; sourceTree = "<group>"; };
-		22D3CBFF190AAFD500EE994B /* RFLNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFLNavigationBar.m; sourceTree = "<group>"; };
+		7D394C98BE140FD77E866AB9 /* libPods-RFLANQRScanner2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RFLANQRScanner2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B032DFF537382A37A6CF99AB /* Pods-RFLANQRScanner2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RFLANQRScanner2.release.xcconfig"; path = "Pods/Target Support Files/Pods-RFLANQRScanner2/Pods-RFLANQRScanner2.release.xcconfig"; sourceTree = "<group>"; };
+		B9FB7CD620F17812B8F66AB9 /* Pods-RFLANQRScanner2.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RFLANQRScanner2.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-RFLANQRScanner2/Pods-RFLANQRScanner2.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CAFBCF8D94A68CBFD5CD9FEB /* Pods-RFLANQRScanner2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RFLANQRScanner2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RFLANQRScanner2/Pods-RFLANQRScanner2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,23 +69,93 @@
 			buildActionMask = 2147483647;
 			files = (
 				22022493180EEB91001BE803 /* CoreGraphics.framework in Frameworks */,
-				22443DC81B58DEFC0029A86B /* Crashlytics.framework in Frameworks */,
 				22022495180EEB91001BE803 /* UIKit.framework in Frameworks */,
 				22022491180EEB91001BE803 /* Foundation.framework in Frameworks */,
-				22443DC71B58DEFC0029A86B /* Fabric.framework in Frameworks */,
+				1F80E6A77B13595FFBFB1CC5 /* libPods-RFLANQRScanner2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22013F791CCA6313000F79B5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				22013F7A1CCA6313000F79B5 /* RFLScannerViewController.h */,
+				22013F7B1CCA6313000F79B5 /* RFLScannerViewController.m */,
+				22013F7C1CCA6313000F79B5 /* RFLSettingsViewController.h */,
+				22013F7D1CCA6313000F79B5 /* RFLSettingsViewController.m */,
+			);
+			name = Controllers;
+			path = RFLANQRScanner2/Controllers;
+			sourceTree = SOURCE_ROOT;
+		};
+		22013F7E1CCA6313000F79B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				22013F8F1CCA664E000F79B5 /* RFLPrivateCredentials.h */,
+				22013F7F1CCA6313000F79B5 /* APLSessionManager.h */,
+				22013F801CCA6313000F79B5 /* APLSessionManager.m */,
+			);
+			name = Models;
+			path = RFLANQRScanner2/Models;
+			sourceTree = SOURCE_ROOT;
+		};
+		22013F811CCA6313000F79B5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				22013F821CCA6313000F79B5 /* RFLNavigationBar.h */,
+				22013F831CCA6313000F79B5 /* RFLNavigationBar.m */,
+				22013F841CCA6313000F79B5 /* RFLToolbar.h */,
+				22013F851CCA6313000F79B5 /* RFLToolbar.m */,
+			);
+			name = Views;
+			path = RFLANQRScanner2/Views;
+			sourceTree = SOURCE_ROOT;
+		};
+		22013F8B1CCA633A000F79B5 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				22013F8C1CCA633A000F79B5 /* RFLAppDelegate.h */,
+				22013F8D1CCA633A000F79B5 /* RFLAppDelegate.m */,
+			);
+			name = Application;
+			path = RFLANQRScanner2/Application;
+			sourceTree = SOURCE_ROOT;
+		};
+		22013F901CCA6680000F79B5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				22013FA71CCA6688000F79B5 /* Images.xcassets */,
+				22013F931CCA6680000F79B5 /* Beep.wav */,
+				22013F941CCA6680000F79B5 /* Fail.wav */,
+				22013F961CCA6680000F79B5 /* LaunchScreen.xib */,
+				22013F991CCA6680000F79B5 /* Success.wav */,
+				22013F9A1CCA6680000F79B5 /* SuccessIcon@2x.png */,
+				22013F9B1CCA6680000F79B5 /* Unsure.wav */,
+			);
+			name = Resources;
+			path = RFLANQRScanner2/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		22013FA91CCA66A2000F79B5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				22013FAA1CCA66A2000F79B5 /* main.m */,
+				22013FAB1CCA66A2000F79B5 /* RFLANQRScanner2-Info.plist */,
+				22013FAC1CCA66A2000F79B5 /* RFLANQRScanner2-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = "RFLANQRScanner2/Supporting Files";
+			sourceTree = SOURCE_ROOT;
+		};
 		22022484180EEB91001BE803 = {
 			isa = PBXGroup;
 			children = (
 				22022496180EEB91001BE803 /* RFLANQRScanner2 */,
 				2202248F180EEB91001BE803 /* Frameworks */,
 				2202248E180EEB91001BE803 /* Products */,
-				22699FA9181105B100F5C93E /* Libraries */,
+				DAEFB0CC42D427C994A1F6C2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,12 +170,11 @@
 		2202248F180EEB91001BE803 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				22443DC51B58DEFC0029A86B /* Fabric.framework */,
-				22443DC61B58DEFC0029A86B /* Crashlytics.framework */,
 				22022490180EEB91001BE803 /* Foundation.framework */,
 				22022492180EEB91001BE803 /* CoreGraphics.framework */,
 				22022494180EEB91001BE803 /* UIKit.framework */,
 				220224A9180EEB91001BE803 /* XCTest.framework */,
+				7D394C98BE140FD77E866AB9 /* libPods-RFLANQRScanner2.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,97 +182,25 @@
 		22022496180EEB91001BE803 /* RFLANQRScanner2 */ = {
 			isa = PBXGroup;
 			children = (
-				22699FE31811062800F5C93E /* Controllers */,
-				22699FE81811062800F5C93E /* Models */,
-				22699FEC1811062800F5C93E /* Views */,
-				22699FDE1811061600F5C93E /* Images.xcassets */,
-				22699FDF1811061600F5C93E /* RFLAppDelegate.h */,
-				22699FE01811061600F5C93E /* RFLAppDelegate.m */,
-				22022497180EEB91001BE803 /* Supporting Files */,
+				22013F8B1CCA633A000F79B5 /* Application */,
+				22013F791CCA6313000F79B5 /* Controllers */,
+				22013F7E1CCA6313000F79B5 /* Models */,
+				22013F811CCA6313000F79B5 /* Views */,
+				22013FA91CCA66A2000F79B5 /* Supporting Files */,
+				22013F901CCA6680000F79B5 /* Resources */,
 			);
 			name = RFLANQRScanner2;
 			path = "RFLAN-QR-Scanner-2";
 			sourceTree = "<group>";
 		};
-		22022497180EEB91001BE803 /* Supporting Files */ = {
+		DAEFB0CC42D427C994A1F6C2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				22443DC21B58DA810029A86B /* LaunchScreen.xib */,
-				22699FC8181105DC00F5C93E /* Beep.wav */,
-				22699FC9181105DC00F5C93E /* Fail.wav */,
-				22699FCC181105DC00F5C93E /* main.m */,
-				22699FCE181105DC00F5C93E /* RFLANQRScanner2-Info.plist */,
-				22699FCF181105DC00F5C93E /* RFLANQRScanner2-Prefix.pch */,
-				22699FD8181105E700F5C93E /* Success.wav */,
-				22699FDA181105E700F5C93E /* Unsure.wav */,
+				CAFBCF8D94A68CBFD5CD9FEB /* Pods-RFLANQRScanner2.debug.xcconfig */,
+				B032DFF537382A37A6CF99AB /* Pods-RFLANQRScanner2.release.xcconfig */,
+				B9FB7CD620F17812B8F66AB9 /* Pods-RFLANQRScanner2.adhoc.xcconfig */,
 			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		22699FA9181105B100F5C93E /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				22BF885119DE295600DB29EB /* AFNetworking */,
-			);
-			path = Libraries;
-			sourceTree = "<group>";
-		};
-		22699FE31811062800F5C93E /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				22699FE41811062800F5C93E /* RFLScannerViewController.h */,
-				22699FE51811062800F5C93E /* RFLScannerViewController.m */,
-				22699FE61811062800F5C93E /* RFLSettingsViewController.h */,
-				22699FE71811062800F5C93E /* RFLSettingsViewController.m */,
-			);
-			path = Controllers;
-			sourceTree = SOURCE_ROOT;
-		};
-		22699FE81811062800F5C93E /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				22699FE91811062800F5C93E /* APLSessionManager.h */,
-				22699FEA1811062800F5C93E /* APLSessionManager.m */,
-				22699FEB1811062800F5C93E /* RFLPrivateCredentials.h */,
-			);
-			path = Models;
-			sourceTree = SOURCE_ROOT;
-		};
-		22699FEC1811062800F5C93E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				22D3CBFE190AAFD500EE994B /* RFLNavigationBar.h */,
-				22D3CBFF190AAFD500EE994B /* RFLNavigationBar.m */,
-				22699FEF1811062800F5C93E /* RFLToolbar.h */,
-				22699FF01811062800F5C93E /* RFLToolbar.m */,
-			);
-			path = Views;
-			sourceTree = SOURCE_ROOT;
-		};
-		22BF885119DE295600DB29EB /* AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				22BF885219DE295600DB29EB /* AFHTTPRequestOperation.h */,
-				22BF885319DE295600DB29EB /* AFHTTPRequestOperation.m */,
-				22BF885419DE295600DB29EB /* AFHTTPRequestOperationManager.h */,
-				22BF885519DE295600DB29EB /* AFHTTPRequestOperationManager.m */,
-				22BF885619DE295600DB29EB /* AFHTTPSessionManager.h */,
-				22BF885719DE295600DB29EB /* AFHTTPSessionManager.m */,
-				22BF885819DE295600DB29EB /* AFNetworking.h */,
-				22BF885919DE295600DB29EB /* AFNetworkReachabilityManager.h */,
-				22BF885A19DE295600DB29EB /* AFNetworkReachabilityManager.m */,
-				22BF885B19DE295600DB29EB /* AFSecurityPolicy.h */,
-				22BF885C19DE295600DB29EB /* AFSecurityPolicy.m */,
-				22BF885D19DE295600DB29EB /* AFURLConnectionOperation.h */,
-				22BF885E19DE295600DB29EB /* AFURLConnectionOperation.m */,
-				22BF885F19DE295600DB29EB /* AFURLRequestSerialization.h */,
-				22BF886019DE295600DB29EB /* AFURLRequestSerialization.m */,
-				22BF886119DE295600DB29EB /* AFURLResponseSerialization.h */,
-				22BF886219DE295600DB29EB /* AFURLResponseSerialization.m */,
-				22BF886319DE295600DB29EB /* AFURLSessionManager.h */,
-				22BF886419DE295600DB29EB /* AFURLSessionManager.m */,
-			);
-			path = AFNetworking;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,11 +210,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 220224B9180EEB91001BE803 /* Build configuration list for PBXNativeTarget "RFLANQRScanner2" */;
 			buildPhases = (
+				23EA896795B35B039993846F /* Check Pods Manifest.lock */,
 				22022489180EEB91001BE803 /* Sources */,
 				2202248A180EEB91001BE803 /* Frameworks */,
 				2202248B180EEB91001BE803 /* Resources */,
 				224898E81810CEC20033C4A8 /* ShellScript */,
 				22443DC41B58DEAD0029A86B /* ShellScript */,
+				F3A35809F6777215AA66A8F5 /* Embed Pods Frameworks */,
+				4B077B7A8EE12A045F4FBD7C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,12 +265,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22699FDB181105E700F5C93E /* Success.wav in Resources */,
-				22699FD1181105DC00F5C93E /* Beep.wav in Resources */,
-				22699FDD181105E700F5C93E /* Unsure.wav in Resources */,
-				22443DC31B58DA810029A86B /* LaunchScreen.xib in Resources */,
-				22699FE11811061600F5C93E /* Images.xcassets in Resources */,
-				22699FD2181105DC00F5C93E /* Fail.wav in Resources */,
+				22013F9E1CCA6680000F79B5 /* Beep.wav in Resources */,
+				22013F9F1CCA6680000F79B5 /* Fail.wav in Resources */,
+				22013FA81CCA6688000F79B5 /* Images.xcassets in Resources */,
+				22013FA11CCA6680000F79B5 /* LaunchScreen.xib in Resources */,
+				22013FA41CCA6680000F79B5 /* Success.wav in Resources */,
+				22013FA61CCA6680000F79B5 /* Unsure.wav in Resources */,
+				22013FA51CCA6680000F79B5 /* SuccessIcon@2x.png in Resources */,
+				22013FAE1CCA66A2000F79B5 /* RFLANQRScanner2-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +290,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run e884c81af3347b33cc266813022c7f346077b04f 18e7ab5ba6fd8cc4c4f13d3cca445ff79a9ddff11e4d26dc7466db5726fba34b";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" e884c81af3347b33cc266813022c7f346077b04f 18e7ab5ba6fd8cc4c4f13d3cca445ff79a9ddff11e4d26dc7466db5726fba34b";
 		};
 		224898E81810CEC20033C4A8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -327,6 +305,51 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
+		23EA896795B35B039993846F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4B077B7A8EE12A045F4FBD7C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RFLANQRScanner2/Pods-RFLANQRScanner2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3A35809F6777215AA66A8F5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RFLANQRScanner2/Pods-RFLANQRScanner2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -334,22 +357,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22BF886A19DE295600DB29EB /* AFURLConnectionOperation.m in Sources */,
-				22699FF21811062800F5C93E /* RFLSettingsViewController.m in Sources */,
-				22699FE21811061600F5C93E /* RFLAppDelegate.m in Sources */,
-				22D3CC00190AAFD500EE994B /* RFLNavigationBar.m in Sources */,
-				22BF886C19DE295600DB29EB /* AFURLResponseSerialization.m in Sources */,
-				22699FF11811062800F5C93E /* RFLScannerViewController.m in Sources */,
-				22BF886B19DE295600DB29EB /* AFURLRequestSerialization.m in Sources */,
-				22BF886919DE295600DB29EB /* AFSecurityPolicy.m in Sources */,
-				22BF886519DE295600DB29EB /* AFHTTPRequestOperation.m in Sources */,
-				22BF886D19DE295600DB29EB /* AFURLSessionManager.m in Sources */,
-				22699FF31811062800F5C93E /* APLSessionManager.m in Sources */,
-				22699FD5181105DC00F5C93E /* main.m in Sources */,
-				22BF886719DE295600DB29EB /* AFHTTPSessionManager.m in Sources */,
-				22699FF51811062800F5C93E /* RFLToolbar.m in Sources */,
-				22BF886819DE295600DB29EB /* AFNetworkReachabilityManager.m in Sources */,
-				22BF886619DE295600DB29EB /* AFHTTPRequestOperationManager.m in Sources */,
+				22013F871CCA6313000F79B5 /* RFLSettingsViewController.m in Sources */,
+				22013F8E1CCA633A000F79B5 /* RFLAppDelegate.m in Sources */,
+				22013FAD1CCA66A2000F79B5 /* main.m in Sources */,
+				22013F861CCA6313000F79B5 /* RFLScannerViewController.m in Sources */,
+				22013F891CCA6313000F79B5 /* RFLNavigationBar.m in Sources */,
+				22013F881CCA6313000F79B5 /* APLSessionManager.m in Sources */,
+				22013F8A1CCA6313000F79B5 /* RFLToolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,37 +448,45 @@
 		};
 		220224BA180EEB91001BE803 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CAFBCF8D94A68CBFD5CD9FEB /* Pods-RFLANQRScanner2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RFLANQRScanner2-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/RFLANQRScanner2-Info.plist";
+				GCC_PREFIX_HEADER = "RFLANQRScanner2/Supporting Files/RFLANQRScanner2-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/RFLANQRScanner2/Supporting Files/RFLANQRScanner2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = RFLANQRScanner2;
-				PROVISIONING_PROFILE = "030178d0-8d8b-4172-ba2f-be2b481631c7";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		220224BB180EEB91001BE803 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B032DFF537382A37A6CF99AB /* Pods-RFLANQRScanner2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RFLANQRScanner2-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/RFLANQRScanner2-Info.plist";
+				GCC_PREFIX_HEADER = "RFLANQRScanner2/Supporting Files/RFLANQRScanner2-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/RFLANQRScanner2/Supporting Files/RFLANQRScanner2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = RFLANQRScanner2;
-				PROVISIONING_PROFILE = "030178d0-8d8b-4172-ba2f-be2b481631c7";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -506,18 +528,22 @@
 		};
 		2233889F19DE921B00237DC3 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9FB7CD620F17812B8F66AB9 /* Pods-RFLANQRScanner2.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RFLANQRScanner2-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/RFLANQRScanner2-Info.plist";
+				GCC_PREFIX_HEADER = "RFLANQRScanner2/Supporting Files/RFLANQRScanner2-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/RFLANQRScanner2/Supporting Files/RFLANQRScanner2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = RFLANQRScanner2;
-				PROVISIONING_PROFILE = "030178d0-8d8b-4172-ba2f-be2b481631c7";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Adhoc;
