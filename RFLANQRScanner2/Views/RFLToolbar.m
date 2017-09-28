@@ -40,10 +40,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.barStyle = UIBarStyleBlack;
+
         self.successImage   = [UIImage imageNamed:@"SuccessIcon"];
         self.failImage      = [UIImage imageNamed:@"FailIcon"];
         
-        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         self.activityIndicator.center = CGPointMake(20, 20);
         self.activityIndicator.hidesWhenStopped = YES;
         [self addSubview:self.activityIndicator];
@@ -66,7 +68,7 @@
     
     if (status ==  RFLToolbarStatusLoading)
     {
-        self.labelView.textColor = [UIColor colorWithWhite:0.3f alpha:1.0f];
+        self.labelView.textColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
         [self.activityIndicator startAnimating];
     }
     else if (status == RFLToolbarStatusFail)

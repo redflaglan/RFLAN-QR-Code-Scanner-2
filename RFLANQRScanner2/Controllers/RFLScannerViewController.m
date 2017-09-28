@@ -365,16 +365,23 @@
     NSDictionary *user  = json[@"user"][@"user"];
     NSString *firstName = user[@"first_name"];
     NSString *lastName  = user[@"last_name"];
-    
+    NSString *alias = user[@"alias"];
+
     NSString *successMessage = nil;
-    if ([firstName length] > 0)
-    {
-        NSString *successMessage = firstName;
-        if ([lastName length] > 0)
-            successMessage = [successMessage stringByAppendingFormat:@" %@", lastName];
-        
-        successMessage = [successMessage stringByAppendingString:@"!"];
-        
+
+    NSString *customerName = nil;
+    if (alias.length && firstName.length && lastName.length) {
+        customerName = [NSString stringWithFormat:@"%@ '%@' %@", firstName, alias, lastName];
+    }
+    else if (firstName.length && lastName.length) {
+        customerName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    }
+    else if (alias.length) {
+        customerName = alias;
+    }
+
+    if (customerName.length) {
+        successMessage = [NSString stringWithFormat:@"Welcome, %@!", customerName];
     }
     else {
         successMessage = @"Sign-in successful!";
