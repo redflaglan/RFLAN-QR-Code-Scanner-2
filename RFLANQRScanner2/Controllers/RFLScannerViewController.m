@@ -104,8 +104,7 @@
 {
     //set up a timer that periodically polls the session manager to look for barcodes
     self.stepTimer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(triggerTimer) userInfo:nil repeats:YES];
-    
-    self.successSound   = [self soundNamed:@"Success.wav"];
+
     self.unsureSound    = [self soundNamed:@"Unsure.wav"];
     self.failSound      = [self soundNamed:@"Fail.wav"];
     self.beepSound      = [self soundNamed:@"Beep.wav"];
@@ -163,6 +162,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    if (self.successSound > 0) {
+        AudioServicesDisposeSystemSoundID(self.successSound);
+    }
+
+    BOOL cenaMode = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingsCenaMode];
+    if (cenaMode) {
+        self.successSound = [self soundNamed:@"Success2.wav"];
+    }
+    else {
+        self.successSound = [self soundNamed:@"Success.wav"];
+    }
+
     [self historyButtonTapped:self.navigationItem.leftBarButtonItem];
 }
 

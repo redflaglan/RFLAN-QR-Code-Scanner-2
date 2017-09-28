@@ -27,9 +27,7 @@
 @property (nonatomic,assign) BOOL contentChanged;
 @property (nonatomic,strong) UITextField *textFieldPassword;
 @property (nonatomic,strong) UITextField *textFieldAPIURL;
-
-- (void)doneButtonTapped:(id)sender;
-- (void)cancelButtonTapped:(id)sender;
+@property (nonatomic,strong) UISwitch *cenaSwitch;
 
 @end
 
@@ -49,7 +47,9 @@
     [super viewDidLoad];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
+
+    self.tableView.cellLayoutMarginsFollowReadableWidth = NO;
+
     self.textFieldAPIURL = [[UITextField alloc] initWithFrame:CGRectMake(110, 0, 320-110, 44)];
     self.textFieldAPIURL.font = [UIFont systemFontOfSize:15.0f];
     self.textFieldAPIURL.text = [defaults objectForKey:kSettingsAPIURL];
@@ -61,6 +61,11 @@
     self.textFieldPassword.text = [defaults objectForKey:kSettingsPassword];
     self.textFieldPassword.delegate = self;
     self.textFieldPassword.returnKeyType = UIReturnKeyDone;
+
+    self.cenaSwitch = [[UISwitch alloc] init];
+    self.cenaSwitch.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    self.cenaSwitch.on = [defaults boolForKey:kSettingsCenaMode];
+    [self.cenaSwitch addTarget:self action:@selector(switchDidChange:) forControlEvents:UIControlEventValueChanged];
     
     self.title = @"Settings";
     self.navigationItem.rightBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonTapped:)];
@@ -77,12 +82,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
+    if (section == 1) { return 1; }
+
     return 2;
 }
 
@@ -90,18 +96,28 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
-    
-    if (indexPath.row == 0)
-    {
-        cell.textLabel.text = @"API URL";
-        [cell.contentView addSubview:self.textFieldAPIURL];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.5f alpha:1.0f];
     }
-    else
-    {
-        cell.textLabel.text = @"Password";
-        [cell.contentView addSubview:self.textFieldPassword];
+
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"API URL";
+            [cell.contentView addSubview:self.textFieldAPIURL];
+        }
+        else {
+            cell.textLabel.text = @"Password";
+            [cell.contentView addSubview:self.textFieldPassword];
+        }
+    }
+    else {
+        cell.textLabel.text = @"You Can't See Me";
+        CGRect frame = self.cenaSwitch.frame;
+        frame.origin.x = CGRectGetWidth(cell.contentView.frame) - (frame.size.width + 15);
+        frame.origin.y = CGRectGetMidY(cell.contentView.bounds) - (frame.size.height * 0.5f);
+        self.cenaSwitch.frame = frame;
+        [cell.contentView addSubview:self.cenaSwitch];
     }
         
     return cell;
@@ -121,13 +137,17 @@
 }
 
 #pragma mark - Dismissal
+- (void)switchDidChange:(id)sender {
+    self.contentChanged = YES;
+}
+
 - (void)doneButtonTapped:(id)sender
 {
-    if (self.contentChanged)
-    {
+    if (self.contentChanged) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:self.textFieldAPIURL.text forKey:kSettingsAPIURL];
         [defaults setObject:self.textFieldPassword.text forKey:kSettingsPassword];
+        [defaults setBool:self.cenaSwitch.on forKey:kSettingsCenaMode];
         [defaults synchronize];
     }
     

@@ -25,6 +25,7 @@
 		22022491180EEB91001BE803 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22022490180EEB91001BE803 /* Foundation.framework */; };
 		22022493180EEB91001BE803 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22022492180EEB91001BE803 /* CoreGraphics.framework */; };
 		22022495180EEB91001BE803 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22022494180EEB91001BE803 /* UIKit.framework */; };
+		22AD2E011F7D4EB4003E6AD8 /* Success2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22AD2E001F7D4D51003E6AD8 /* Success2.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		22022492180EEB91001BE803 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		22022494180EEB91001BE803 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		220224A9180EEB91001BE803 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		22AD2E001F7D4D51003E6AD8 /* Success2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Success2.wav; sourceTree = "<group>"; };
 		7D394C98BE140FD77E866AB9 /* libPods-RFLANQRScanner2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RFLANQRScanner2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B032DFF537382A37A6CF99AB /* Pods-RFLANQRScanner2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RFLANQRScanner2.release.xcconfig"; path = "Pods/Target Support Files/Pods-RFLANQRScanner2/Pods-RFLANQRScanner2.release.xcconfig"; sourceTree = "<group>"; };
 		B9FB7CD620F17812B8F66AB9 /* Pods-RFLANQRScanner2.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RFLANQRScanner2.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-RFLANQRScanner2/Pods-RFLANQRScanner2.adhoc.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				22013F931CCA6680000F79B5 /* Beep.wav */,
 				22013F941CCA6680000F79B5 /* Fail.wav */,
 				22013F961CCA6680000F79B5 /* LaunchScreen.xib */,
+				22AD2E001F7D4D51003E6AD8 /* Success2.wav */,
 				22013F991CCA6680000F79B5 /* Success.wav */,
 				22013F9A1CCA6680000F79B5 /* SuccessIcon@2x.png */,
 				22013F9B1CCA6680000F79B5 /* Unsure.wav */,
@@ -264,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22AD2E011F7D4EB4003E6AD8 /* Success2.wav in Resources */,
 				22013F9E1CCA6680000F79B5 /* Beep.wav in Resources */,
 				22013F9F1CCA6680000F79B5 /* Fail.wav in Resources */,
 				22013FA81CCA6688000F79B5 /* Images.xcassets in Resources */,

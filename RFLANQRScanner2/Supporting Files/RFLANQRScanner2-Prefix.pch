@@ -16,5 +16,6 @@
 
     #define kSettingsAPIURL             @"APIURL"
     #define kSettingsPassword           @"Password"
+    #define kSettingsCenaMode           @"CenaMode"
 
 #endif
