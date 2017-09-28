@@ -33,11 +33,15 @@
     //realign the color layer with the background
     self.colorView.frame = ({
         CGRect bounds = self.bounds;
-        if ([UIApplication sharedApplication].statusBarHidden == NO)
-            bounds.origin.y -= 20.0f;
-        bounds.size.height += 20.0f;
+        if ([UIApplication sharedApplication].statusBarHidden == NO) {
+            CGFloat height = [UIApplication sharedApplication].statusBarFrame.size.height;
+            bounds.origin.y -= height;
+            bounds.size.height += height;
+        }
+
         bounds;
     });
+    [self insertSubview:self.colorView atIndex:1];
 }
 
 - (void)setBarTintColor:(UIColor *)barTintColor
