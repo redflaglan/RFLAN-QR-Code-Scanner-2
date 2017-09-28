@@ -99,6 +99,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.textLabel.textColor = [UIColor colorWithWhite:0.5f alpha:1.0f];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
     if (indexPath.section == 0) {
