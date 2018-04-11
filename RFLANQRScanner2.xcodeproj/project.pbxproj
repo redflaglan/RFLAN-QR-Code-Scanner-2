@@ -25,6 +25,11 @@
 		22022491180EEB91001BE803 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22022490180EEB91001BE803 /* Foundation.framework */; };
 		22022493180EEB91001BE803 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22022492180EEB91001BE803 /* CoreGraphics.framework */; };
 		22022495180EEB91001BE803 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22022494180EEB91001BE803 /* UIKit.framework */; };
+		2273B929207E3AE6001733B9 /* RFLQRSignInRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273B928207E3AE6001733B9 /* RFLQRSignInRequest.m */; };
+		2273B92C207E3BB5001733B9 /* RFLQRPassRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273B92B207E3BB5001733B9 /* RFLQRPassRequest.m */; };
+		2273B92F207E3C1D001733B9 /* RFLQRSignInResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273B92E207E3C1D001733B9 /* RFLQRSignInResponse.m */; };
+		2273B932207E3C73001733B9 /* RFLRFLQRSignInUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273B931207E3C73001733B9 /* RFLRFLQRSignInUser.m */; };
+		2273B935207E407D001733B9 /* RFLQRPassResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273B934207E407D001733B9 /* RFLQRPassResponse.m */; };
 		22AD2E011F7D4EB4003E6AD8 /* Success2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22AD2E001F7D4D51003E6AD8 /* Success2.wav */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +61,16 @@
 		22022492180EEB91001BE803 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		22022494180EEB91001BE803 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		220224A9180EEB91001BE803 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		2273B927207E3AE6001733B9 /* RFLQRSignInRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFLQRSignInRequest.h; sourceTree = "<group>"; };
+		2273B928207E3AE6001733B9 /* RFLQRSignInRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFLQRSignInRequest.m; sourceTree = "<group>"; };
+		2273B92A207E3BB5001733B9 /* RFLQRPassRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFLQRPassRequest.h; sourceTree = "<group>"; };
+		2273B92B207E3BB5001733B9 /* RFLQRPassRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFLQRPassRequest.m; sourceTree = "<group>"; };
+		2273B92D207E3C1D001733B9 /* RFLQRSignInResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFLQRSignInResponse.h; sourceTree = "<group>"; };
+		2273B92E207E3C1D001733B9 /* RFLQRSignInResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFLQRSignInResponse.m; sourceTree = "<group>"; };
+		2273B930207E3C73001733B9 /* RFLRFLQRSignInUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFLRFLQRSignInUser.h; sourceTree = "<group>"; };
+		2273B931207E3C73001733B9 /* RFLRFLQRSignInUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFLRFLQRSignInUser.m; sourceTree = "<group>"; };
+		2273B933207E407D001733B9 /* RFLQRPassResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFLQRPassResponse.h; sourceTree = "<group>"; };
+		2273B934207E407D001733B9 /* RFLQRPassResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFLQRPassResponse.m; sourceTree = "<group>"; };
 		22AD2E001F7D4D51003E6AD8 /* Success2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Success2.wav; sourceTree = "<group>"; };
 		7D394C98BE140FD77E866AB9 /* libPods-RFLANQRScanner2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RFLANQRScanner2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B032DFF537382A37A6CF99AB /* Pods-RFLANQRScanner2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RFLANQRScanner2.release.xcconfig"; path = "Pods/Target Support Files/Pods-RFLANQRScanner2/Pods-RFLANQRScanner2.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +109,8 @@
 		22013F7E1CCA6313000F79B5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2273B925207E3A93001733B9 /* APIRequests */,
+				2273B926207E3A93001733B9 /* APIResponses */,
 				22013F7F1CCA6313000F79B5 /* APLSessionManager.h */,
 				22013F801CCA6313000F79B5 /* APLSessionManager.m */,
 				F138EA491D9F38C100B874C6 /* RFLPrivateCredentials.h */,
@@ -193,6 +210,30 @@
 			);
 			name = RFLANQRScanner2;
 			path = "RFLAN-QR-Scanner-2";
+			sourceTree = "<group>";
+		};
+		2273B925207E3A93001733B9 /* APIRequests */ = {
+			isa = PBXGroup;
+			children = (
+				2273B927207E3AE6001733B9 /* RFLQRSignInRequest.h */,
+				2273B928207E3AE6001733B9 /* RFLQRSignInRequest.m */,
+				2273B92A207E3BB5001733B9 /* RFLQRPassRequest.h */,
+				2273B92B207E3BB5001733B9 /* RFLQRPassRequest.m */,
+			);
+			path = APIRequests;
+			sourceTree = "<group>";
+		};
+		2273B926207E3A93001733B9 /* APIResponses */ = {
+			isa = PBXGroup;
+			children = (
+				2273B92D207E3C1D001733B9 /* RFLQRSignInResponse.h */,
+				2273B92E207E3C1D001733B9 /* RFLQRSignInResponse.m */,
+				2273B930207E3C73001733B9 /* RFLRFLQRSignInUser.h */,
+				2273B931207E3C73001733B9 /* RFLRFLQRSignInUser.m */,
+				2273B933207E407D001733B9 /* RFLQRPassResponse.h */,
+				2273B934207E407D001733B9 /* RFLQRPassResponse.m */,
+			);
+			path = APIResponses;
 			sourceTree = "<group>";
 		};
 		DAEFB0CC42D427C994A1F6C2 /* Pods */ = {
@@ -366,9 +407,14 @@
 				22013F8E1CCA633A000F79B5 /* RFLAppDelegate.m in Sources */,
 				22013FAD1CCA66A2000F79B5 /* main.m in Sources */,
 				22013F861CCA6313000F79B5 /* RFLScannerViewController.m in Sources */,
+				2273B932207E3C73001733B9 /* RFLRFLQRSignInUser.m in Sources */,
+				2273B92F207E3C1D001733B9 /* RFLQRSignInResponse.m in Sources */,
+				2273B92C207E3BB5001733B9 /* RFLQRPassRequest.m in Sources */,
+				2273B935207E407D001733B9 /* RFLQRPassResponse.m in Sources */,
 				22013F891CCA6313000F79B5 /* RFLNavigationBar.m in Sources */,
 				22013F881CCA6313000F79B5 /* APLSessionManager.m in Sources */,
 				22013F8A1CCA6313000F79B5 /* RFLToolbar.m in Sources */,
+				2273B929207E3AE6001733B9 /* RFLQRSignInRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -56,6 +56,9 @@
 /* Data task for tracking requests to validate QR codes */
 @property (nonatomic, strong) NSURLSessionDataTask *codeScanTask;
 
+/* Data task for assigning ticket ID to pass */
+@property (nonatomic, strong) NSURLSessionDataTask *qrPassTask;
+
 /* Data task for tracking requests to the attendee count API */
 @property (nonatomic, strong) NSURLSessionDataTask *attendeeRequestTask;
 
@@ -316,7 +319,7 @@
         return;
     }
     
-    if (self.codeScanTask) {
+    if (self.codeScanTask || self.qrPassTask) {
         return;
     }
     
@@ -334,7 +337,6 @@
     
     id successBlock = ^(NSURLSessionDataTask *task, id responseObject) {
         [self processSuccessfulResponse:responseObject];
-        [self resetScanningState];
         self.codeScanTask = nil;
     };
     
@@ -354,11 +356,11 @@
     NSDictionary *json = (NSDictionary *)responseObject;
     
     //Check the status of the API response
-    if ([json[@"status"] intValue] < 1)
-    {
+    if ([json[@"status"] intValue] < 1) {
         NSString *errorMessage = (NSString *)[json objectForKey:@"error"];
-        if ([errorMessage length] <= 0)
+        if ([errorMessage length] <= 0) {
             errorMessage = @"Unknown error occurred.";
+        }
         
         AudioServicesPlaySystemSound(self.failSound);
         [toolbar setState:RFLToolbarStatusFail withMessage:errorMessage];
@@ -374,10 +376,13 @@
     }
     
     //Extract their name from the API data
-    NSDictionary *user  = json[@"user"][@"user"];
+    NSDictionary *user  = json[@"user"];
     NSString *firstName = user[@"first_name"];
     NSString *lastName  = user[@"last_name"];
     NSString *alias = user[@"alias"];
+    
+    // Extract ticket data from API
+    NSString *ticketID = json[@"ticket_id"];
 
     NSString *successMessage = nil;
 
