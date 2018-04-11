@@ -25,21 +25,10 @@
 #import "RFLToolbar.h"
 #import "RFLPrivateCredentials.h"
 
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
-
-@interface RFLAppDelegate ()
-
-- (void)setUpSettings;
-
-@end
-
 @implementation RFLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Fabric with:@[CrashlyticsKit]];
-    
     //Set up the settings
     [self setUpSettings];
     

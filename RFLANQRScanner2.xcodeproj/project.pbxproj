@@ -30,6 +30,7 @@
 		2273B92F207E3C1D001733B9 /* RFLQRSignInResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273B92E207E3C1D001733B9 /* RFLQRSignInResponse.m */; };
 		2273B932207E3C73001733B9 /* RFLRFLQRSignInUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273B931207E3C73001733B9 /* RFLRFLQRSignInUser.m */; };
 		2273B935207E407D001733B9 /* RFLQRPassResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273B934207E407D001733B9 /* RFLQRPassResponse.m */; };
+		2273B93A207E5C16001733B9 /* RFLAudioFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273B939207E5C16001733B9 /* RFLAudioFeedback.m */; };
 		22AD2E011F7D4EB4003E6AD8 /* Success2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 22AD2E001F7D4D51003E6AD8 /* Success2.wav */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,8 @@
 		2273B931207E3C73001733B9 /* RFLRFLQRSignInUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFLRFLQRSignInUser.m; sourceTree = "<group>"; };
 		2273B933207E407D001733B9 /* RFLQRPassResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFLQRPassResponse.h; sourceTree = "<group>"; };
 		2273B934207E407D001733B9 /* RFLQRPassResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFLQRPassResponse.m; sourceTree = "<group>"; };
+		2273B938207E5C16001733B9 /* RFLAudioFeedback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFLAudioFeedback.h; sourceTree = "<group>"; };
+		2273B939207E5C16001733B9 /* RFLAudioFeedback.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFLAudioFeedback.m; sourceTree = "<group>"; };
 		22AD2E001F7D4D51003E6AD8 /* Success2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Success2.wav; sourceTree = "<group>"; };
 		7D394C98BE140FD77E866AB9 /* libPods-RFLANQRScanner2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RFLANQRScanner2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B032DFF537382A37A6CF99AB /* Pods-RFLANQRScanner2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RFLANQRScanner2.release.xcconfig"; path = "Pods/Target Support Files/Pods-RFLANQRScanner2/Pods-RFLANQRScanner2.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,10 +112,10 @@
 		22013F7E1CCA6313000F79B5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2273B937207E5BD1001733B9 /* AudioPlayer */,
+				2273B936207E5BAC001733B9 /* QRCodeScanning */,
 				2273B925207E3A93001733B9 /* APIRequests */,
 				2273B926207E3A93001733B9 /* APIResponses */,
-				22013F7F1CCA6313000F79B5 /* APLSessionManager.h */,
-				22013F801CCA6313000F79B5 /* APLSessionManager.m */,
 				F138EA491D9F38C100B874C6 /* RFLPrivateCredentials.h */,
 			);
 			name = Models;
@@ -236,6 +239,24 @@
 			path = APIResponses;
 			sourceTree = "<group>";
 		};
+		2273B936207E5BAC001733B9 /* QRCodeScanning */ = {
+			isa = PBXGroup;
+			children = (
+				22013F7F1CCA6313000F79B5 /* APLSessionManager.h */,
+				22013F801CCA6313000F79B5 /* APLSessionManager.m */,
+			);
+			path = QRCodeScanning;
+			sourceTree = "<group>";
+		};
+		2273B937207E5BD1001733B9 /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				2273B938207E5C16001733B9 /* RFLAudioFeedback.h */,
+				2273B939207E5C16001733B9 /* RFLAudioFeedback.m */,
+			);
+			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
 		DAEFB0CC42D427C994A1F6C2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,7 +303,7 @@
 				ORGANIZATIONNAME = RFLAN;
 				TargetAttributes = {
 					2202248C180EEB91001BE803 = {
-						DevelopmentTeam = 22JQ7VTDEA;
+						DevelopmentTeam = 6LF3GMKZAB;
 					};
 				};
 			};
@@ -410,6 +431,7 @@
 				2273B932207E3C73001733B9 /* RFLRFLQRSignInUser.m in Sources */,
 				2273B92F207E3C1D001733B9 /* RFLQRSignInResponse.m in Sources */,
 				2273B92C207E3BB5001733B9 /* RFLQRPassRequest.m in Sources */,
+				2273B93A207E5C16001733B9 /* RFLAudioFeedback.m in Sources */,
 				2273B935207E407D001733B9 /* RFLQRPassResponse.m in Sources */,
 				22013F891CCA6313000F79B5 /* RFLNavigationBar.m in Sources */,
 				22013F881CCA6313000F79B5 /* APLSessionManager.m in Sources */,
@@ -528,7 +550,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 22JQ7VTDEA;
+				DEVELOPMENT_TEAM = 6LF3GMKZAB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -552,7 +574,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 22JQ7VTDEA;
+				DEVELOPMENT_TEAM = 6LF3GMKZAB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -622,7 +644,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 22JQ7VTDEA;
+				DEVELOPMENT_TEAM = 6LF3GMKZAB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

@@ -26,6 +26,7 @@
 #import "RFLSettingsViewController.h"
 #import "RFLToolbar.h"
 #import <AFNetworking/AFNetworking.h>
+#import "RFLAudioFeedback.h"
 
 @interface RFLScannerViewController ()
 
@@ -65,30 +66,8 @@
 /* AFNetworking Session Manager */
 @property (nonatomic, strong) AFHTTPSessionManager *httpSessionManager;
 
-/* Sound files to play at various states */
-@property (nonatomic, assign) SystemSoundID beepSound;
-@property (nonatomic, assign) SystemSoundID successSound;
-@property (nonatomic, assign) SystemSoundID unsureSound;
-@property (nonatomic, assign) SystemSoundID failSound;
-
-- (void)setUp;
-- (SystemSoundID)soundNamed:(NSString *)soundName;
-- (void)historyButtonTapped:(id)sender;
-- (void)settingsButtonTapped:(id)sender;
-- (void)handleTap:(UIGestureRecognizer *)recognizer;
-- (void)focusAtPoint:(CGPoint)point;
-- (void)exposeAtPoint:(CGPoint)point;
-- (void)triggerTimer;
-- (void)removeDetectedBarcodeUI;
-- (CAShapeLayer*)barcodeOverlayLayerForPath:(CGPathRef)path withColor:(UIColor*)color;
-- (void)removeAllSublayersFromLayer:(CALayer *)layer;
-- (CGMutablePathRef)createPathForPoints:(NSArray *)points;
-+ (UIColor *)overlayColor;
-- (void)sendScanRequestWithBarcode:(AVMetadataMachineReadableCodeObject *)barcode;
-- (void)processSuccessfulResponse:(id)responseObject;
-- (void)handleUnsuccessfulResponseWithError:(NSError *)error;
-- (void)toolbarTapped:(UIGestureRecognizer *)recognizer;
-- (void)resetScanningState;
+/* Audio feedback */
+@property (nonatomic, strong) RFLAudioFeedback *alertPlayer;
 
 @end
 
@@ -107,11 +86,7 @@
 {
     //set up a timer that periodically polls the session manager to look for barcodes
     self.stepTimer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(triggerTimer) userInfo:nil repeats:YES];
-
-    self.unsureSound    = [self soundNamed:@"Unsure.wav"];
-    self.failSound      = [self soundNamed:@"Fail.wav"];
-    self.beepSound      = [self soundNamed:@"Beep.wav"];
-    
+    self.alertPlayer = [[RFLAudioFeedback alloc] init];
     self.sessionManager = [[APLSessionManager alloc] init];
     self.httpSessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 }
@@ -166,43 +141,11 @@
 {
     [super viewWillAppear:animated];
 
-    if (self.successSound > 0) {
-        AudioServicesDisposeSystemSoundID(self.successSound);
-    }
-
-    BOOL cenaMode = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingsCenaMode];
-    if (cenaMode) {
-        self.successSound = [self soundNamed:@"Success2.wav"];
-    }
-    else {
-        self.successSound = [self soundNamed:@"Success.wav"];
-    }
-
     [self historyButtonTapped:self.navigationItem.leftBarButtonItem];
-}
-
-- (void)dealloc
-{
-    //Dispose of the system audio sounds
-    AudioServicesDisposeSystemSoundID(self.successSound);
-    AudioServicesDisposeSystemSoundID(self.failSound);
-    AudioServicesDisposeSystemSoundID(self.unsureSound);
-    AudioServicesDisposeSystemSoundID(self.beepSound);
-}
-
-- (SystemSoundID)soundNamed:(NSString *)soundName
-{
-    SystemSoundID sound = 0;
     
-    NSURL *soundURL = [NSURL fileURLWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:soundName]];
-    if (soundURL != nil) {
-        OSStatus error = AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &sound);
-        if (error != kAudioServicesNoError) {
-            NSLog(@"Problem loading Sound");
-        }
-    }
+    BOOL cenaMode = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingsCenaMode];
+    self.alertPlayer.cenaMode = cenaMode;
     
-    return sound;
 }
 
 - (void)handleTap:(UIGestureRecognizer *)recognizer
@@ -326,7 +269,7 @@
     RFLToolbar *toolbar = (RFLToolbar *)self.navigationController.toolbar;
     
     //play the beep sound and show the loading graphic
-    AudioServicesPlaySystemSound(self.beepSound);
+    [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeBeep];
     [toolbar setState:RFLToolbarStatusLoading withMessage:@"Loading... (Tap to Cancel)"];
     [self.navigationController setToolbarHidden:NO animated:YES];
     
@@ -362,7 +305,7 @@
             errorMessage = @"Unknown error occurred.";
         }
         
-        AudioServicesPlaySystemSound(self.failSound);
+        [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeFail];
         [toolbar setState:RFLToolbarStatusFail withMessage:errorMessage];
         return;
     }
@@ -370,7 +313,7 @@
     //Check to see if the customer has paid
     if ([json[@"paid"] intValue] <= 0)
     {
-        AudioServicesPlaySystemSound(self.unsureSound);
+        [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeUnsure];
         [toolbar setState:RFLToolbarStatusUnsure withMessage:@"Hasn't paid yet!"];
         return;
     }
@@ -404,7 +347,7 @@
         successMessage = @"Sign-in successful!";
     }
     
-    AudioServicesPlaySystemSound(self.successSound);
+    [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeSuccess];
     [toolbar setState:RFLToolbarStatusSuccess withMessage:successMessage];
 }
 
@@ -412,7 +355,7 @@
 {
     RFLToolbar *toolbar = (RFLToolbar *)self.navigationController.toolbar;
     
-    AudioServicesPlaySystemSound(self.failSound);
+    [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeFail];
     [toolbar setState:RFLToolbarStatusFail withMessage:error.localizedDescription];
 }
 
