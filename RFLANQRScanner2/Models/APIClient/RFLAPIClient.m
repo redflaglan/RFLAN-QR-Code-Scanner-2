@@ -15,11 +15,8 @@
 #import "RFLQRPassRequest.h"
 #import "RFLQRPassResponse.h"
 
-<<<<<<< HEAD
 #import "RFLAttendeeCountResponse.h"
 
-=======
->>>>>>> 9dfaf2077aedf055329d513cc33ab257998a74ae
 @interface RFLAPIClient ()
 
 /* Data task for tracking requests to validate QR codes */
@@ -43,7 +40,6 @@
 - (instancetype)initWithAPIURL:(NSString *)APIURL password:(NSString *)password
 {
     if (self = [super init]) {
-<<<<<<< HEAD
         _baseURL = [NSURL URLWithString:APIURL];
         _password = password;
         [self setUp];
@@ -56,18 +52,11 @@
 {
     if (self = [super init]) {
         [self setUp];
-=======
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        _httpSessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
-        _baseURL = [NSURL URLWithString:APIURL];
-        _password = password;
->>>>>>> 9dfaf2077aedf055329d513cc33ab257998a74ae
     }
     
     return self;
 }
 
-<<<<<<< HEAD
 - (void)setUp
 {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -75,8 +64,6 @@
     _httpSessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
 }
 
-=======
->>>>>>> 9dfaf2077aedf055329d513cc33ab257998a74ae
 #pragma mark - Sign-in -
 
 - (void)signInAttendeeWithQRCode:(NSString *)qrCode
@@ -87,11 +74,7 @@
     
     // Create the parameters object
     RFLQRSignInRequest *requestParameters = [[RFLQRSignInRequest alloc] initWithQRCodeValue:qrCode password:self.password];
-<<<<<<< HEAD
     NSDictionary *parametersDict = [MTLJSONAdapter JSONDictionaryFromModel:requestParameters error:nil];
-=======
-    NSDictionary *parametersDict = requestParameters.dictionaryValue;
->>>>>>> 9dfaf2077aedf055329d513cc33ab257998a74ae
     
     // Craft the endpoint URL
     NSURL *url = [self.baseURL URLByAppendingPathComponent:@"qrsignin"];
@@ -125,11 +108,7 @@
                             failure:(void (^)(NSError *))failHandler
 {
     RFLQRPassRequest *requestParameters = [[RFLQRPassRequest alloc] initWithQRCode:qrCode ticketID:scanResponse.ticketID password:self.password];
-<<<<<<< HEAD
     NSDictionary *parametersDict = [MTLJSONAdapter JSONDictionaryFromModel:requestParameters error:nil];
-=======
-    NSDictionary *parametersDict = requestParameters.dictionaryValue;
->>>>>>> 9dfaf2077aedf055329d513cc33ab257998a74ae
     
     // Craft the endpoint URL
     NSURL *url = [self.baseURL URLByAppendingPathComponent:@"qrpass"];
@@ -174,24 +153,12 @@
 {
     if (self.attendeeRequestTask || self.baseURL.absoluteString.length == 0) { return; }
     
-<<<<<<< HEAD
     // Craft the endpoint URL
     NSURL *url = [self.baseURL URLByAppendingPathComponent:@"attendance"];
     
     // Success block when the request succeeds
     id requestSuccessBlock = ^(NSURLSessionDataTask *task, id responseObject) {
         RFLAttendeeCountResponse *response = [[RFLAttendeeCountResponse alloc] initWithDictionary:responseObject error:nil];
-=======
-    RFLQRSignInRequest *requestParameters = [[RFLQRSignInRequest alloc] initWithQRCodeValue:nil password:self.password];
-    NSDictionary *parametersDict = requestParameters.dictionaryValue;
-    
-    // Craft the endpoint URL
-    NSURL *url = [self.baseURL URLByAppendingPathComponent:@"qrsignin"];
-    
-    // Success block when the request succeeds
-    id requestSuccessBlock = ^(NSURLSessionDataTask *task, id responseObject) {
-        RFLQRSignInResponse *response = [[RFLQRSignInResponse alloc] initWithDictionary:responseObject error:nil];
->>>>>>> 9dfaf2077aedf055329d513cc33ab257998a74ae
         if (successHandler) {
             successHandler(response.signedInAttendeeCount, response.totalAttendeeCount);
         }
@@ -206,11 +173,7 @@
     
     // Create the request
     self.attendeeRequestTask = [self.httpSessionManager POST:url.absoluteString
-<<<<<<< HEAD
                                                   parameters:@{@"password": self.password}
-=======
-                                           parameters:parametersDict
->>>>>>> 9dfaf2077aedf055329d513cc33ab257998a74ae
                                              progress:nil
                                               success:requestSuccessBlock
                                               failure:requestFailBlock];

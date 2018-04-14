@@ -16,10 +16,5 @@
 @property (nonatomic, assign) BOOL hasPaid;
 @property (nonatomic, strong) RFLQRSignInUser *user;
 @property (nonatomic, copy) NSString *ticketID;
-<<<<<<< HEAD
-=======
-@property (nonatomic, assign) NSInteger signedInAttendeeCount;
-@property (nonatomic, assign) NSInteger totalAttendeeCount;
->>>>>>> 9dfaf2077aedf055329d513cc33ab257998a74ae
 
 @end
