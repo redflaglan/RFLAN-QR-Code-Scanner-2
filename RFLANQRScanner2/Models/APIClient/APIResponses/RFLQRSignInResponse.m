@@ -18,8 +18,8 @@
              @"hasPaid": @"paid",
              @"user": @"user",
              @"ticketID": @"ticket_id",
-             @"isSignedIn": @"signedin",
-             @"isSignedUp": @"signedup"
+             @"signedInAttendeeCount": @"signedin",
+             @"totalAttendeeCount": @"signedup"
              };
 }
 

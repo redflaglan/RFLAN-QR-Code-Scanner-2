@@ -54,18 +54,6 @@
 /* Used to track the previously scanned barcode, so we don't constantly spam it. */
 @property (nonatomic, copy) NSString *previouslyScannedCode;
 
-/* Data task for tracking requests to validate QR codes */
-@property (nonatomic, strong) NSURLSessionDataTask *codeScanTask;
-
-/* Data task for assigning ticket ID to pass */
-@property (nonatomic, strong) NSURLSessionDataTask *qrPassTask;
-
-/* Data task for tracking requests to the attendee count API */
-@property (nonatomic, strong) NSURLSessionDataTask *attendeeRequestTask;
-
-/* AFNetworking Session Manager */
-@property (nonatomic, strong) AFHTTPSessionManager *httpSessionManager;
-
 /* Audio feedback */
 @property (nonatomic, strong) RFLAudioFeedback *alertPlayer;
 
@@ -88,7 +76,7 @@
     self.stepTimer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(triggerTimer) userInfo:nil repeats:YES];
     self.alertPlayer = [[RFLAudioFeedback alloc] init];
     self.sessionManager = [[APLSessionManager alloc] init];
-    self.httpSessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+
 }
 
 - (void)loadView
@@ -354,7 +342,6 @@
 - (void)handleUnsuccessfulResponseWithError:(NSError *)error
 {
     RFLToolbar *toolbar = (RFLToolbar *)self.navigationController.toolbar;
-    
     [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeFail];
     [toolbar setState:RFLToolbarStatusFail withMessage:error.localizedDescription];
 }

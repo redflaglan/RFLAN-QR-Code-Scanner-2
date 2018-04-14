@@ -8,7 +8,7 @@
 
 #import <Mantle/Mantle.h>
 
-@interface RFLRFLQRSignInUser : MTLModel <MTLJSONSerializing>
+@interface RFLQRSignInUser : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, assign) NSInteger userID;
 @property (nonatomic, copy) NSString *alias;

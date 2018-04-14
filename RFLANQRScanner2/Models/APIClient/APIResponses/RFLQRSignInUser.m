@@ -6,7 +6,7 @@
 //  Copyright © 2018 RFLAN. All rights reserved.
 //
 
-#import "RFLRFLQRSignInUser.h"
+#import "RFLQRSignInUser.h"
 
 @implementation RFLRFLQRSignInUser
 

@@ -8,7 +8,17 @@
 
 #import "RFLQRSignInRequest.h"
 
-@implementation RFLQRSignInRequest 
+@implementation RFLQRSignInRequest
+
+- (instancetype)initWithQRCodeValue:(NSString *)qrCode password:(NSString *)password
+{
+    if (self = [super init]) {
+        _qrCodeValue = qrCode;
+        _password = password;
+    }
+    
+    return self;
+}
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{

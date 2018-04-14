@@ -7,16 +7,16 @@
 //
 
 #import <Mantle/Mantle.h>
-#import "RFLRFLQRSignInUser.h"
+#import "RFLQRSignInUser.h"
 
 @interface RFLQRSignInResponse : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, copy) NSString *error;
 @property (nonatomic, assign) BOOL hasPaid;
-@property (nonatomic, strong) RFLRFLQRSignInUser *user;
+@property (nonatomic, strong) RFLQRSignInUser *user;
 @property (nonatomic, copy) NSString *ticketID;
-@property (nonatomic, assign) BOOL isSignedIn;
-@property (nonatomic, assign) BOOL isSignedUp;
+@property (nonatomic, assign) NSInteger signedInAttendeeCount;
+@property (nonatomic, assign) NSInteger totalAttendeeCount;
 
 @end

@@ -10,6 +10,17 @@
 
 @implementation RFLQRPassRequest
 
+- (instancetype)initWithQRCode:(NSString *)qrCode ticketID:(NSString *)ticketID password:(NSString *)password
+{
+    if (self = [super init]) {
+        _qrCodeValue = qrCode;
+        _ticketID = ticketID;
+        _password = password;
+    }
+    
+    return self;
+}
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"password": @"password",
