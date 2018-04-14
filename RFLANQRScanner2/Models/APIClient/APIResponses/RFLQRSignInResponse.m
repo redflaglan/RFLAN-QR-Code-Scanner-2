@@ -17,7 +17,13 @@
              @"error": @"error",
              @"hasPaid": @"paid",
              @"user": @"user",
+<<<<<<< HEAD
              @"ticketID": @"ticket_id"
+=======
+             @"ticketID": @"ticket_id",
+             @"signedInAttendeeCount": @"signedin",
+             @"totalAttendeeCount": @"signedup"
+>>>>>>> 9dfaf2077aedf055329d513cc33ab257998a74ae
              };
 }
 
