@@ -17,12 +17,6 @@
 
 @interface RFLAPIClient ()
 
-/* The password for the API access */
-@property (nonatomic, copy) NSString *password;
-
-/* The base URL for all endpoints */
-@property (nonatomic, strong) NSURL *baseURL;
-
 /* Data task for tracking requests to validate QR codes */
 @property (nonatomic, strong) NSURLSessionDataTask *codeScanTask;
 
@@ -56,17 +50,17 @@
 #pragma mark - Sign-in -
 
 - (void)signInAttendeeWithQRCode:(NSString *)qrCode
-                         success:(void (^)(RFLQRSignInUser *))successHandler
+                         success:(void (^)(RFLQRSignInResponse *))successHandler
                          failure:(void (^)(NSError *))failHandler
 {
-    if (self.isSigningInUser) { return; }
+    if (self.isSigningInUser || self.baseURL.absoluteString.length == 0) { return; }
     
     // Create the parameters object
     RFLQRSignInRequest *requestParameters = [[RFLQRSignInRequest alloc] initWithQRCodeValue:qrCode password:self.password];
     NSDictionary *parametersDict = requestParameters.dictionaryValue;
     
     // Craft the endpoint URL
-    NSURL *url = [self.baseURL URLByAppendingPathComponent:@"signin"];
+    NSURL *url = [self.baseURL URLByAppendingPathComponent:@"qrsignin"];
     
     // Success block when the request succeeds
     id requestSuccessBlock = ^(NSURLSessionDataTask *task, id responseObject) {
@@ -93,17 +87,17 @@
 
 - (void)performPassRequestWithQRCode:(NSString *)qrCode
                         scanResponse:(RFLQRSignInResponse *)scanResponse
-                            success:(void (^)(RFLQRSignInUser *))successHandler
+                            success:(void (^)(RFLQRSignInResponse *))successHandler
                             failure:(void (^)(NSError *))failHandler
 {
     RFLQRPassRequest *requestParameters = [[RFLQRPassRequest alloc] initWithQRCode:qrCode ticketID:scanResponse.ticketID password:self.password];
     NSDictionary *parametersDict = requestParameters.dictionaryValue;
     
     // Craft the endpoint URL
-    NSURL *url = [self.baseURL URLByAppendingPathComponent:@"scanpass"];
+    NSURL *url = [self.baseURL URLByAppendingPathComponent:@"qrpass"];
     
     id requestSuccessBlock = ^(NSURLSessionDataTask *task, id responseObject) {
-        if (successHandler) { successHandler(scanResponse.user); }
+        if (successHandler) { successHandler(scanResponse); }
         self.qrPassTask = nil;
     };
     
@@ -123,11 +117,54 @@
     [self.qrPassTask resume];
 }
 
+- (void)cancelCurrentSignInAttempt
+{
+    if (self.qrPassTask) {
+        [self.qrPassTask cancel];
+        self.qrPassTask = nil;
+    }
+    
+    if (self.codeScanTask) {
+        [self.codeScanTask cancel];
+        self.codeScanTask = nil;
+    }
+}
+
 #pragma mark - Attendee Count -
-- (void)refreshAttendeeCountWithSuccessHandler:(void (^)(NSInteger))successHandler
+- (void)refreshAttendeeCountWithSuccessHandler:(void (^)(NSInteger, NSInteger))successHandler
                                        failure:(void (^)(NSError *))failHandler
 {
+    if (self.attendeeRequestTask || self.baseURL.absoluteString.length == 0) { return; }
     
+    RFLQRSignInRequest *requestParameters = [[RFLQRSignInRequest alloc] initWithQRCodeValue:nil password:self.password];
+    NSDictionary *parametersDict = requestParameters.dictionaryValue;
+    
+    // Craft the endpoint URL
+    NSURL *url = [self.baseURL URLByAppendingPathComponent:@"qrsignin"];
+    
+    // Success block when the request succeeds
+    id requestSuccessBlock = ^(NSURLSessionDataTask *task, id responseObject) {
+        RFLQRSignInResponse *response = [[RFLQRSignInResponse alloc] initWithDictionary:responseObject error:nil];
+        if (successHandler) {
+            successHandler(response.signedInAttendeeCount, response.totalAttendeeCount);
+        }
+        self.attendeeRequestTask = nil;
+    };
+    
+    // Fail block if an error occurs
+    id requestFailBlock = ^(NSURLSessionDataTask *task, NSError *error) {
+        if (failHandler) { failHandler(error); }
+        self.attendeeRequestTask = nil;
+    };
+    
+    // Create the request
+    self.attendeeRequestTask = [self.httpSessionManager POST:url.absoluteString
+                                           parameters:parametersDict
+                                             progress:nil
+                                              success:requestSuccessBlock
+                                              failure:requestFailBlock];
+    // Kick off the request
+    [self.attendeeRequestTask resume];
 }
 
 @end

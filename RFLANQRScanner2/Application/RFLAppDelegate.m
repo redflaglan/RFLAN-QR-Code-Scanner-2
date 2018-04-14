@@ -64,12 +64,14 @@
     NSArray *defaultKeys = [[defaults dictionaryRepresentation] allKeys];
     
     //Request URL
-    if ([defaultKeys indexOfObject:kSettingsAPIURL] == NSNotFound)
+    if ([defaultKeys indexOfObject:kSettingsAPIURL] == NSNotFound) {
         [defaults setObject:RFLAN_CREDENTIAL_APIURL forKey:kSettingsAPIURL];
+    }
     
     //Password
-    if ([defaultKeys indexOfObject:kSettingsPassword] == NSNotFound)
+    if ([defaultKeys indexOfObject:kSettingsPassword] == NSNotFound) {
         [defaults setObject:RFLAN_CREDENTIAL_PASSWORD forKey:kSettingsPassword];
+    }
     
     [defaults synchronize];
 }

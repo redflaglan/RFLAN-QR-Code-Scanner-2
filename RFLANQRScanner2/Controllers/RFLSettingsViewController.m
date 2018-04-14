@@ -54,6 +54,7 @@
     self.textFieldAPIURL.font = [UIFont systemFontOfSize:15.0f];
     self.textFieldAPIURL.text = [defaults objectForKey:kSettingsAPIURL];
     self.textFieldAPIURL.delegate = self;
+    self.textFieldAPIURL.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.textFieldAPIURL.returnKeyType = UIReturnKeyDone;
     
     self.textFieldPassword = [[UITextField alloc] initWithFrame:CGRectMake(110, 0, 320-110, 44)];

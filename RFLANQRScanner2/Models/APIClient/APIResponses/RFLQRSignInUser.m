@@ -8,7 +8,7 @@
 
 #import "RFLQRSignInUser.h"
 
-@implementation RFLRFLQRSignInUser
+@implementation RFLQRSignInUser
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey
 {

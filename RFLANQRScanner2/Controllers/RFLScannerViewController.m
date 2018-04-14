@@ -27,6 +27,8 @@
 #import "RFLToolbar.h"
 #import <AFNetworking/AFNetworking.h>
 #import "RFLAudioFeedback.h"
+#import "RFLAPIClient.h"
+#import "RFLQRSignInResponse.h"
 
 @interface RFLScannerViewController ()
 
@@ -57,6 +59,9 @@
 /* Audio feedback */
 @property (nonatomic, strong) RFLAudioFeedback *alertPlayer;
 
+/* API Client */
+@property (nonatomic, strong) RFLAPIClient *apiClient;
+
 @end
 
 @implementation RFLScannerViewController
@@ -76,7 +81,7 @@
     self.stepTimer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(triggerTimer) userInfo:nil repeats:YES];
     self.alertPlayer = [[RFLAudioFeedback alloc] init];
     self.sessionManager = [[APLSessionManager alloc] init];
-
+    self.apiClient = [[RFLAPIClient alloc] init];
 }
 
 - (void)loadView
@@ -134,6 +139,9 @@
     BOOL cenaMode = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingsCenaMode];
     self.alertPlayer.cenaMode = cenaMode;
     
+    NSString *apiURLString = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingsAPIURL];
+    self.apiClient.baseURL = [NSURL URLWithString:apiURLString];
+    self.apiClient.password = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingsPassword];
 }
 
 - (void)handleTap:(UIGestureRecognizer *)recognizer
@@ -149,10 +157,7 @@
 - (void)toolbarTapped:(UIGestureRecognizer *)recognizer
 {
     //Cancel any active scans
-    if (self.codeScanTask) {
-        [self.codeScanTask cancel];
-        self.codeScanTask = nil;
-    }
+    [self.apiClient cancelCurrentSignInAttempt];
     
     //Clean out previous scan data
     self.previouslyScannedCode = nil;
@@ -164,42 +169,13 @@
 
 - (void)historyButtonTapped:(id)sender
 {
-    //There's one already in progress
-    if (self.attendeeRequestTask) {
-        return;
-    }
-    
-    //Don't bother if we don't have the API URL
-    NSString *apiURLString = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingsAPIURL];
-    if (apiURLString.length == 0) {
-        return;
-    }
-    
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"qrcode"] = @"";
-    parameters[@"password"] = [[NSUserDefaults standardUserDefaults] objectForKey: kSettingsPassword];
-    
-    id successBlock = ^(NSURLSessionDataTask *task, id responseObject) {
-        NSDictionary *signups = (NSDictionary *)responseObject;
-        
+    [self.apiClient refreshAttendeeCountWithSuccessHandler:^(NSInteger signedIn, NSInteger totalAttendees) {
         NSString *signupText = nil;
-        NSNumber *signedIn = signups[@"signedin"];
-        NSNumber *totalSignups = signups[@"signedup"];
-        
-        if ([signedIn intValue] >= 0  && [totalSignups intValue] > 0)
-            signupText = [NSString stringWithFormat:@"%d / %d", signedIn.intValue, totalSignups.intValue];
-        
+        signupText = [NSString stringWithFormat:@"%ld / %ld", (long)signedIn, (long)totalAttendees];
         self.navigationItem.leftBarButtonItem.title = signupText;
+    } failure:^(NSError *error) {
         
-        self.attendeeRequestTask = nil;
-    };
-    
-    id failBlock = ^(NSURLSessionDataTask *task, NSError *error) {
-        self.attendeeRequestTask = nil;
-    };
-    
-    self.attendeeRequestTask = [self.httpSessionManager POST:apiURLString parameters:parameters progress:nil success:successBlock failure:failBlock];
-    [self.attendeeRequestTask resume];
+    }];
 }
 
 - (void)settingsButtonTapped:(id)sender
@@ -212,15 +188,17 @@
 #pragma mark - Timer Events
 - (void)triggerTimer
 {
-	if (self.scanningBarcode || [self.sessionManager.barcodes count] < 1)
+    if (self.scanningBarcode || [self.sessionManager.barcodes count] < 1) {
 		return;
+    }
 	
 	@synchronized(self.sessionManager)
     {
 		AVMetadataMachineReadableCodeObject *barcode = self.sessionManager.barcodes.firstObject;
         AVMetadataMachineReadableCodeObject *transformedBarcode = (AVMetadataMachineReadableCodeObject*)[self.previewLayer transformedMetadataObjectForMetadataObject:barcode];
-		if ([transformedBarcode.stringValue isEqualToString:self.previouslyScannedCode])
+        if ([transformedBarcode.stringValue isEqualToString:self.previouslyScannedCode]) {
             return;
+        }
         
 		// Draw overlay
 		[self.barcodeTimer invalidate];
@@ -250,10 +228,6 @@
         return;
     }
     
-    if (self.codeScanTask || self.qrPassTask) {
-        return;
-    }
-    
     RFLToolbar *toolbar = (RFLToolbar *)self.navigationController.toolbar;
     
     //play the beep sound and show the loading graphic
@@ -261,34 +235,21 @@
     [toolbar setState:RFLToolbarStatusLoading withMessage:@"Loading... (Tap to Cancel)"];
     [self.navigationController setToolbarHidden:NO animated:YES];
     
-    //set up the request parameters
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"qrcode"] = barcode.stringValue;
-    parameters[@"password"] = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingsPassword];
-    
-    id successBlock = ^(NSURLSessionDataTask *task, id responseObject) {
-        [self processSuccessfulResponse:responseObject];
-        self.codeScanTask = nil;
-    };
-    
-    id failBlock = ^(NSURLSessionDataTask *task, NSError *error) {
+    [self.apiClient signInAttendeeWithQRCode:barcode.stringValue success:^(RFLQRSignInResponse *response) {
+        [self processSuccessfulSignInResponse:response];
+    } failure:^(NSError *error) {
         [self handleUnsuccessfulResponseWithError:error];
         [self resetScanningState];
-        self.codeScanTask = nil;
-    };
-    
-    self.codeScanTask = [self.httpSessionManager POST:[[NSUserDefaults standardUserDefaults] objectForKey:kSettingsAPIURL] parameters:parameters progress:nil success:successBlock failure:failBlock];
-    [self.codeScanTask resume];
+    }];
 }
 
-- (void)processSuccessfulResponse:(id)responseObject
+- (void)processSuccessfulSignInResponse:(RFLQRSignInResponse *)response
 {
     RFLToolbar *toolbar = (RFLToolbar *)self.navigationController.toolbar;
-    NSDictionary *json = (NSDictionary *)responseObject;
     
     //Check the status of the API response
-    if ([json[@"status"] intValue] < 1) {
-        NSString *errorMessage = (NSString *)[json objectForKey:@"error"];
+    if (response.status < 1) {
+        NSString *errorMessage = response.error;
         if ([errorMessage length] <= 0) {
             errorMessage = @"Unknown error occurred.";
         }
@@ -299,7 +260,7 @@
     }
     
     //Check to see if the customer has paid
-    if ([json[@"paid"] intValue] <= 0)
+    if (response.hasPaid == NO)
     {
         [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeUnsure];
         [toolbar setState:RFLToolbarStatusUnsure withMessage:@"Hasn't paid yet!"];
@@ -307,14 +268,11 @@
     }
     
     //Extract their name from the API data
-    NSDictionary *user  = json[@"user"];
-    NSString *firstName = user[@"first_name"];
-    NSString *lastName  = user[@"last_name"];
-    NSString *alias = user[@"alias"];
+    RFLQRSignInUser *user  = response.user;
+    NSString *firstName = user.firstName;
+    NSString *lastName  = user.lastName;
+    NSString *alias = user.alias;
     
-    // Extract ticket data from API
-    NSString *ticketID = json[@"ticket_id"];
-
     NSString *successMessage = nil;
 
     NSString *customerName = nil;
