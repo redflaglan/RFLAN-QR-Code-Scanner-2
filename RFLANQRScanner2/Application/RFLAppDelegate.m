@@ -32,9 +32,6 @@
     //Set up the settings
     [self setUpSettings];
     
-    //Make sure to set the status bar content as white
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
-    
     //Make sure any navigation bars created have the red appearance
     [[RFLNavigationBar appearance] setBarTintColor:[UIColor colorWithRed:220.0f/255.0f green:30.0f/255.0f blue:20.0f/255.0f alpha:0.55f]];
     [[RFLNavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];

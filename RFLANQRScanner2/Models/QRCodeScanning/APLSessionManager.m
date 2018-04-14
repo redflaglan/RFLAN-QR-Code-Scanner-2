@@ -165,24 +165,25 @@
 - (void)startRunning
 {
     //check to make sure the device can scan for QR codes
-    
-	dispatch_sync( _sessionQueue, ^{
-		[self setupCaptureSession];
+    __weak typeof(self) weakSelf = self;
+	dispatch_sync(_sessionQueue, ^{
+		[weakSelf setupCaptureSession];
 		
-		[_captureSession startRunning];
-		_running = YES;
+		[weakSelf.captureSession startRunning];
+        self->_running = YES;
 		
-        if ([[self.metadataOutput availableMetadataObjectTypes] indexOfObject:AVMetadataObjectTypeQRCode] != NSNotFound)
-            [[self metadataOutput] setMetadataObjectTypes:[NSArray arrayWithObjects:AVMetadataObjectTypeQRCode, nil]];
+        if ([[weakSelf.metadataOutput availableMetadataObjectTypes] indexOfObject:AVMetadataObjectTypeQRCode] != NSNotFound)
+            [[weakSelf metadataOutput] setMetadataObjectTypes:[NSArray arrayWithObjects:AVMetadataObjectTypeQRCode, nil]];
 	});
 }
 
 - (void)stopRunning
 {
+    __weak typeof(self) weakSelf = self;
 	dispatch_sync( _sessionQueue, ^{
-		_running = NO;
+		self->_running = NO;
 		
-		[_captureSession stopRunning];
+		[weakSelf.captureSession stopRunning];
 		
 		[self captureSessionDidStopRunning];
 		
@@ -250,12 +251,12 @@
 			[self captureSessionDidStopRunning];
 			
 			NSError *error = [[notification userInfo] objectForKey:AVCaptureSessionErrorKey];
-			if ( error.code == AVErrorDeviceIsNotAvailableInBackground ) {
+			if ( error.code == AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground ) {
 				NSLog( @"device not available in background" );
 
 				// Since we can't resume running while in the background we need to remember this for next time we come to the foreground
-				if ( _running )
-					_startCaptureSessionOnEnteringForeground = YES;
+				if ( self->_running )
+					self->_startCaptureSessionOnEnteringForeground = YES;
 			}
 			else if ( error.code == AVErrorMediaServicesWereReset ) {
 				NSLog( @"media services were reset" );
@@ -301,12 +302,12 @@
 	NSLog( @"-[%@ %@] called", NSStringFromClass([self class]), NSStringFromSelector(_cmd) );
 	
 	dispatch_sync( _sessionQueue, ^{
-		if ( _startCaptureSessionOnEnteringForeground ) {
+		if ( self->_startCaptureSessionOnEnteringForeground ) {
 			NSLog( @"-[%@ %@] manually restarting session", NSStringFromClass([self class]), NSStringFromSelector(_cmd) );
 			
-			_startCaptureSessionOnEnteringForeground = NO;
-			if ( _running )
-				[_captureSession startRunning];
+			self->_startCaptureSessionOnEnteringForeground = NO;
+			if ( self->_running )
+				[self->_captureSession startRunning];
 		}
 	});
 }

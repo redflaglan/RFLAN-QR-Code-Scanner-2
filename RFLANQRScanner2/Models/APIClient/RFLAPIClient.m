@@ -15,6 +15,8 @@
 #import "RFLQRPassRequest.h"
 #import "RFLQRPassResponse.h"
 
+#import "RFLAttendeeCountResponse.h"
+
 @interface RFLAPIClient ()
 
 /* Data task for tracking requests to validate QR codes */
@@ -38,13 +40,28 @@
 - (instancetype)initWithAPIURL:(NSString *)APIURL password:(NSString *)password
 {
     if (self = [super init]) {
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        _httpSessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
         _baseURL = [NSURL URLWithString:APIURL];
         _password = password;
+        [self setUp];
     }
     
     return self;
+}
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        [self setUp];
+    }
+    
+    return self;
+}
+
+- (void)setUp
+{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    _httpSessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
+    _httpSessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
 }
 
 #pragma mark - Sign-in -
@@ -57,7 +74,7 @@
     
     // Create the parameters object
     RFLQRSignInRequest *requestParameters = [[RFLQRSignInRequest alloc] initWithQRCodeValue:qrCode password:self.password];
-    NSDictionary *parametersDict = requestParameters.dictionaryValue;
+    NSDictionary *parametersDict = [MTLJSONAdapter JSONDictionaryFromModel:requestParameters error:nil];
     
     // Craft the endpoint URL
     NSURL *url = [self.baseURL URLByAppendingPathComponent:@"qrsignin"];
@@ -91,7 +108,7 @@
                             failure:(void (^)(NSError *))failHandler
 {
     RFLQRPassRequest *requestParameters = [[RFLQRPassRequest alloc] initWithQRCode:qrCode ticketID:scanResponse.ticketID password:self.password];
-    NSDictionary *parametersDict = requestParameters.dictionaryValue;
+    NSDictionary *parametersDict = [MTLJSONAdapter JSONDictionaryFromModel:requestParameters error:nil];
     
     // Craft the endpoint URL
     NSURL *url = [self.baseURL URLByAppendingPathComponent:@"qrpass"];
@@ -136,15 +153,12 @@
 {
     if (self.attendeeRequestTask || self.baseURL.absoluteString.length == 0) { return; }
     
-    RFLQRSignInRequest *requestParameters = [[RFLQRSignInRequest alloc] initWithQRCodeValue:nil password:self.password];
-    NSDictionary *parametersDict = requestParameters.dictionaryValue;
-    
     // Craft the endpoint URL
-    NSURL *url = [self.baseURL URLByAppendingPathComponent:@"qrsignin"];
+    NSURL *url = [self.baseURL URLByAppendingPathComponent:@"attendance"];
     
     // Success block when the request succeeds
     id requestSuccessBlock = ^(NSURLSessionDataTask *task, id responseObject) {
-        RFLQRSignInResponse *response = [[RFLQRSignInResponse alloc] initWithDictionary:responseObject error:nil];
+        RFLAttendeeCountResponse *response = [[RFLAttendeeCountResponse alloc] initWithDictionary:responseObject error:nil];
         if (successHandler) {
             successHandler(response.signedInAttendeeCount, response.totalAttendeeCount);
         }
@@ -159,7 +173,7 @@
     
     // Create the request
     self.attendeeRequestTask = [self.httpSessionManager POST:url.absoluteString
-                                           parameters:parametersDict
+                                                  parameters:@{@"password": self.password}
                                              progress:nil
                                               success:requestSuccessBlock
                                               failure:requestFailBlock];

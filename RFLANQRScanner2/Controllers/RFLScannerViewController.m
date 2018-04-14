@@ -120,7 +120,7 @@
 	self.barcodeTargetLayer = barcodeTargetLayer;
 	[self.view.layer addSublayer:self.barcodeTargetLayer];
     
-    self.navigationItem.leftBarButtonItem   = [[UIBarButtonItem alloc] initWithTitle:@"0" style:UIBarButtonItemStylePlain target:self action:@selector(historyButtonTapped:)];
+    self.navigationItem.leftBarButtonItem   = [[UIBarButtonItem alloc] initWithTitle:@"0/0" style:UIBarButtonItemStylePlain target:self action:@selector(historyButtonTapped:)];
     self.navigationItem.rightBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTapped:)];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"RFLANLogoHeader"]];
