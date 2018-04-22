@@ -66,7 +66,6 @@
 		220224A9180EEB91001BE803 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		221DE7B120822E670029F3C6 /* RFLAttendeeCountResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFLAttendeeCountResponse.h; sourceTree = "<group>"; };
 		221DE7B220822E670029F3C6 /* RFLAttendeeCountResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFLAttendeeCountResponse.m; sourceTree = "<group>"; };
-
 		2273B938207E5C16001733B9 /* RFLAudioFeedback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFLAudioFeedback.h; sourceTree = "<group>"; };
 		2273B939207E5C16001733B9 /* RFLAudioFeedback.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFLAudioFeedback.m; sourceTree = "<group>"; };
 		2273B93D20819E4D001733B9 /* RFLQRSignInUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFLQRSignInUser.h; sourceTree = "<group>"; };
@@ -253,16 +252,14 @@
 		2273B93C20819E4D001733B9 /* APIResponses */ = {
 			isa = PBXGroup;
 			children = (
-				2273B93F20819E4D001733B9 /* RFLQRSignInResponse.h */,
-				2273B94220819E4D001733B9 /* RFLQRSignInResponse.m */,
 				2273B93D20819E4D001733B9 /* RFLQRSignInUser.h */,
 				2273B94020819E4D001733B9 /* RFLQRSignInUser.m */,
+				2273B93F20819E4D001733B9 /* RFLQRSignInResponse.h */,
+				2273B94220819E4D001733B9 /* RFLQRSignInResponse.m */,
 				2273B94120819E4D001733B9 /* RFLQRPassResponse.h */,
 				2273B93E20819E4D001733B9 /* RFLQRPassResponse.m */,
 				221DE7B120822E670029F3C6 /* RFLAttendeeCountResponse.h */,
 				221DE7B220822E670029F3C6 /* RFLAttendeeCountResponse.m */,
-				2273B93F20819E4D001733B9 /* RFLQRSignInResponse.h */,
-				2273B94220819E4D001733B9 /* RFLQRSignInResponse.m */,
 			);
 			path = APIResponses;
 			sourceTree = "<group>";
@@ -560,7 +557,6 @@
 			baseConfigurationReference = CAFBCF8D94A68CBFD5CD9FEB /* Pods-RFLANQRScanner2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 22JQ7VTDEA;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -586,7 +582,6 @@
 			baseConfigurationReference = B032DFF537382A37A6CF99AB /* Pods-RFLANQRScanner2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 22JQ7VTDEA;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 6LF3GMKZAB;
@@ -659,7 +654,6 @@
 			baseConfigurationReference = B9FB7CD620F17812B8F66AB9 /* Pods-RFLANQRScanner2.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 22JQ7VTDEA;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 6LF3GMKZAB;

@@ -81,8 +81,9 @@
     
     // Success block when the request succeeds
     id requestSuccessBlock = ^(NSURLSessionDataTask *task, id responseObject) {
-        RFLQRSignInResponse *response = [[RFLQRSignInResponse alloc] initWithDictionary:responseObject error:nil];
-        [self performPassRequestWithQRCode:qrCode scanResponse:response success:successHandler failure:failHandler];
+        RFLQRSignInResponse *response = [MTLJSONAdapter modelOfClass:RFLQRSignInResponse.class
+                                                  fromJSONDictionary:responseObject error:nil];
+        if (successHandler) { successHandler(response); }
         self.codeScanTask = nil;
     };
 
@@ -102,19 +103,21 @@
     [self.codeScanTask resume];
 }
 
-- (void)performPassRequestWithQRCode:(NSString *)qrCode
-                        scanResponse:(RFLQRSignInResponse *)scanResponse
-                            success:(void (^)(RFLQRSignInResponse *))successHandler
-                            failure:(void (^)(NSError *))failHandler
+- (void)associatePassWithQRCode:(NSString *)qrCode
+                     toTicketID:(NSString *)ticketID
+                        success:(void (^)(RFLQRPassResponse *))successHandler
+                        failure:(void (^)(NSError *))failHandler
 {
-    RFLQRPassRequest *requestParameters = [[RFLQRPassRequest alloc] initWithQRCode:qrCode ticketID:scanResponse.ticketID password:self.password];
+    RFLQRPassRequest *requestParameters = [[RFLQRPassRequest alloc] initWithQRCode:qrCode ticketID:ticketID password:self.password];
     NSDictionary *parametersDict = [MTLJSONAdapter JSONDictionaryFromModel:requestParameters error:nil];
     
     // Craft the endpoint URL
     NSURL *url = [self.baseURL URLByAppendingPathComponent:@"qrpass"];
     
     id requestSuccessBlock = ^(NSURLSessionDataTask *task, id responseObject) {
-        if (successHandler) { successHandler(scanResponse); }
+        RFLQRPassResponse *response = [MTLJSONAdapter modelOfClass:RFLQRPassResponse.class
+                                                fromJSONDictionary:responseObject error:nil];
+        if (successHandler) { successHandler(response); }
         self.qrPassTask = nil;
     };
     
@@ -158,7 +161,8 @@
     
     // Success block when the request succeeds
     id requestSuccessBlock = ^(NSURLSessionDataTask *task, id responseObject) {
-        RFLAttendeeCountResponse *response = [[RFLAttendeeCountResponse alloc] initWithDictionary:responseObject error:nil];
+        RFLAttendeeCountResponse *response = [MTLJSONAdapter modelOfClass:RFLAttendeeCountResponse.class
+                                                       fromJSONDictionary:responseObject error:nil];
         if (successHandler) {
             successHandler(response.signedInAttendeeCount, response.totalAttendeeCount);
         }

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class RFLQRSignInResponse;
+@class RFLQRPassResponse;
 
 @interface RFLAPIClient : NSObject
 
@@ -23,6 +24,11 @@
 - (void)signInAttendeeWithQRCode:(NSString *)qrCode
                          success:(void (^)(RFLQRSignInResponse *))successHandler
                          failure:(void (^)(NSError *))failHandler;
+
+- (void)associatePassWithQRCode:(NSString *)qrCode
+                     toTicketID:(NSString *)ticketID
+                        success:(void (^)(RFLQRPassResponse *))successHandler
+                        failure:(void (^)(NSError *))failHandler;
 
 - (void)cancelCurrentSignInAttempt;
 

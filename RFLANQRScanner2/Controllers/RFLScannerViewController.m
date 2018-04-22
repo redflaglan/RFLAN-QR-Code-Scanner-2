@@ -29,6 +29,7 @@
 #import "RFLAudioFeedback.h"
 #import "RFLAPIClient.h"
 #import "RFLQRSignInResponse.h"
+#import "RFLQRPassResponse.h"
 
 @interface RFLScannerViewController ()
 
@@ -61,6 +62,9 @@
 
 /* API Client */
 @property (nonatomic, strong) RFLAPIClient *apiClient;
+
+/* The current ticket that was scanned, pending the pass association */
+@property (nonatomic, strong) RFLQRSignInResponse *currentSignInResponse;
 
 @end
 
@@ -162,6 +166,7 @@
     //Clean out previous scan data
     self.previouslyScannedCode = nil;
     self.scanningBarcode = nil;
+    self.currentSignInResponse = nil;
     
     //Hide the toolbar
     [self.navigationController setToolbarHidden:YES animated:YES];
@@ -214,7 +219,13 @@
         
         self.scanningBarcode = transformedBarcode;
         self.previouslyScannedCode = transformedBarcode.stringValue;
-        [self sendScanRequestWithBarcode:self.scanningBarcode];
+        
+        if (self.currentSignInResponse == nil) {
+            [self sendScanRequestWithBarcode:self.scanningBarcode];
+        }
+        else {
+            [self sendScanRequestForPassAssociationWithQRCode:self.scanningBarcode];
+        }
 	}
 }
 
@@ -267,34 +278,71 @@
         return;
     }
     
+    // Save the response so we can use it for the pass
+    self.currentSignInResponse = response;
+    
     //Extract their name from the API data
     RFLQRSignInUser *user  = response.user;
-    NSString *firstName = user.firstName;
-    NSString *lastName  = user.lastName;
     NSString *alias = user.alias;
     
     NSString *successMessage = nil;
-
-    NSString *customerName = nil;
-    if (alias.length && firstName.length && lastName.length) {
-        customerName = [NSString stringWithFormat:@"%@ '%@' %@", firstName, alias, lastName];
-    }
-    else if (firstName.length && lastName.length) {
-        customerName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
-    }
-    else if (alias.length) {
-        customerName = alias;
-    }
+    NSString *customerName = alias;
 
     if (customerName.length) {
-        successMessage = [NSString stringWithFormat:@"Welcome, %@!", customerName];
+        successMessage = [NSString stringWithFormat:@"Welcome, %@! (Scan Pass Now)", customerName];
     }
     else {
-        successMessage = @"Sign-in successful!";
+        successMessage = @"Sign-in successful! (Scan Pass Now)";
     }
     
     [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeSuccess];
     [toolbar setState:RFLToolbarStatusSuccess withMessage:successMessage];
+}
+
+- (void)sendScanRequestForPassAssociationWithQRCode:(NSString *)qrCode
+{
+    RFLToolbar *toolbar = (RFLToolbar *)self.navigationController.toolbar;
+    
+    //play the beep sound and show the loading graphic
+    [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeBeep];
+    [toolbar setState:RFLToolbarStatusLoading withMessage:@"Loading... (Tap to Cancel)"];
+    [self.navigationController setToolbarHidden:NO animated:YES];
+
+    __weak typeof(self) weakSelf = self;
+    
+    id successBlock = ^(RFLQRPassResponse *response) {
+        [weakSelf processSuccessfulPassAssociationResponse:response];
+    };
+    
+    id failBlock = ^(NSError *error) {
+        [weakSelf handleUnsuccessfulResponseWithError:error];
+    };
+    
+    [self.apiClient associatePassWithQRCode:qrCode toTicketID:self.currentSignInResponse.ticketID
+                                    success:successBlock failure:failBlock];
+}
+
+- (void)processSuccessfulPassAssociationResponse:(RFLQRPassResponse *)response
+{
+    RFLToolbar *toolbar = (RFLToolbar *)self.navigationController.toolbar;
+    
+    //Check the status of the API response
+    if (response.status < 1) {
+        NSString *errorMessage = response.error;
+        if ([errorMessage length] <= 0) {
+            errorMessage = @"Unknown error occurred.";
+        }
+        
+        [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeFail];
+        [toolbar setState:RFLToolbarStatusFail withMessage:errorMessage];
+        return;
+    }
+    
+    // Clean out the current sign in flag
+    self.currentSignInResponse = nil;
+    
+    [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeSuccess];
+    [toolbar setState:RFLToolbarStatusSuccess withMessage:@"Pass Association Successful!"];
 }
 
 - (void)handleUnsuccessfulResponseWithError:(NSError *)error

@@ -10,8 +10,7 @@
 
 @implementation RFLAttendeeCountResponse
 
-+ (NSDictionary *)JSONKeyPathsByPropertyKey
-{
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"signedInAttendeeCount": @"signedin",
              @"totalAttendeeCount": @"signedup"

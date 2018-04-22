@@ -8,7 +8,7 @@
 
 #import <Mantle/Mantle.h>
 
-@interface RFLAttendeeCountResponse : MTLModel
+@interface RFLAttendeeCountResponse : MTLModel<MTLJSONSerializing>
 
 @property (nonatomic, assign) NSInteger signedInAttendeeCount;
 @property (nonatomic, assign) NSInteger totalAttendeeCount;

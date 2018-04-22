@@ -6,9 +6,9 @@
 //  Copyright © 2018 RFLAN. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import <Mantle/Mantle.h>
 
-@interface RFLQRPassResponse : MTLModel
+@interface RFLQRPassResponse : MTLModel<MTLJSONSerializing>
 
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, copy) NSString *error;
