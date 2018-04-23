@@ -339,6 +339,13 @@
 	}
 }
 
+- (void)flushBarcodes
+{
+    @synchronized(self) {
+        self.barcodes = nil;
+    }
+}
+
 #pragma mark Focus/Exposure
 
 - (BOOL) supportsFocus

@@ -14,7 +14,7 @@
 {
     if (self = [super init]) {
         _qrCodeValue = qrCode;
-        _ticketID = ticketID;
+        _ticketID = [NSString stringWithFormat:@"%ld", (long)ticketID];
         _password = password;
     }
     

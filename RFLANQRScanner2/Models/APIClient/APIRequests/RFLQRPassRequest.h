@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, copy) NSString *qrCodeValue;
-@property (nonatomic, assign) NSInteger ticketID;
+@property (nonatomic, copy) NSString *ticketID;
 
 - (instancetype)initWithQRCode:(NSString *)qrCode ticketID:(NSInteger)ticketID password:(NSString *)password;
 

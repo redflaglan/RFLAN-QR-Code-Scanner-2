@@ -187,4 +187,15 @@
     [self.attendeeRequestTask resume];
 }
 
+#pragma mark - State Tracking -
+- (BOOL)isSigningInUser
+{
+    return (self.qrPassTask || self.codeScanTask);
+}
+
+- (BOOL)isCheckingUserCount
+{
+    return self.attendeeRequestTask != nil;
+}
+
 @end

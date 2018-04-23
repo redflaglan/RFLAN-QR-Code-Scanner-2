@@ -110,6 +110,8 @@
 - (void) continuousFocusAtPoint:(CGPoint)point;
 - (void) exposeAtPoint:(CGPoint)point;
 
+- (void)flushBarcodes;
+
 @property (nonatomic,assign) AVCaptureFocusMode focusMode;
 @property (nonatomic,assign) AVCaptureExposureMode exposureMode;
 

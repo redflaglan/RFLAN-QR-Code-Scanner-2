@@ -51,9 +51,6 @@
 /* CALayer object that is drawn over any QR codes detected */
 @property (nonatomic, retain) CALayer *barcodeTargetLayer;
 
-/* Used to track when a barcode is being processed */
-@property (nonatomic, strong) AVMetadataMachineReadableCodeObject *scanningBarcode;
-
 /* Used to track the previously scanned barcode, so we don't constantly spam it. */
 @property (nonatomic, copy) NSString *previouslyScannedCode;
 
@@ -146,6 +143,8 @@
     NSString *apiURLString = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingsAPIURL];
     self.apiClient.baseURL = [NSURL URLWithString:apiURLString];
     self.apiClient.password = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingsPassword];
+    
+    [self historyButtonTapped:nil];
 }
 
 - (void)handleTap:(UIGestureRecognizer *)recognizer
@@ -165,8 +164,8 @@
     
     //Clean out previous scan data
     self.previouslyScannedCode = nil;
-    self.scanningBarcode = nil;
     self.currentSignInResponse = nil;
+    [self.sessionManager flushBarcodes];
     
     //Hide the toolbar
     [self.navigationController setToolbarHidden:YES animated:YES];
@@ -175,9 +174,7 @@
 - (void)historyButtonTapped:(id)sender
 {
     [self.apiClient refreshAttendeeCountWithSuccessHandler:^(NSInteger signedIn, NSInteger totalAttendees) {
-        NSString *signupText = nil;
-        signupText = [NSString stringWithFormat:@"%ld / %ld", (long)signedIn, (long)totalAttendees];
-        self.navigationItem.leftBarButtonItem.title = signupText;
+        [self updateAttendeeCountTitleWithSignedIn:signedIn total:totalAttendees];
     } failure:^(NSError *error) {
         
     }];
@@ -190,10 +187,18 @@
     [self presentViewController:navController animated:YES completion:nil];
 }
 
+#pragma mark - Update UI -
+- (void)updateAttendeeCountTitleWithSignedIn:(NSInteger)signedIn total:(NSInteger)totalAttendees
+{
+    NSString *signupText = nil;
+    signupText = [NSString stringWithFormat:@"%ld / %ld", (long)signedIn, (long)totalAttendees];
+    self.navigationItem.leftBarButtonItem.title = signupText;
+}
+
 #pragma mark - Timer Events
 - (void)triggerTimer
 {
-    if (self.scanningBarcode || [self.sessionManager.barcodes count] < 1) {
+    if (self.apiClient.isSigningInUser || [self.sessionManager.barcodes count] < 1) {
 		return;
     }
 	
@@ -217,20 +222,19 @@
 		[CATransaction commit];
 		CFRelease(barcodeBoundary);
         
-        self.scanningBarcode = transformedBarcode;
         self.previouslyScannedCode = transformedBarcode.stringValue;
         
         if (self.currentSignInResponse == nil) {
-            [self sendScanRequestWithBarcode:self.scanningBarcode];
+            [self sendScanRequestWithBarcode:self.previouslyScannedCode];
         }
         else {
-            [self sendScanRequestForPassAssociationWithQRCode:self.scanningBarcode];
+            [self sendScanRequestForPassAssociationWithQRCode:self.previouslyScannedCode];
         }
 	}
 }
 
 #pragma mark - Network Requests
-- (void)sendScanRequestWithBarcode:(AVMetadataMachineReadableCodeObject *)barcode
+- (void)sendScanRequestWithBarcode:(NSString *)barcode
 {
     NSString *apiURLString = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingsAPIURL];
     if (apiURLString.length == 0) {
@@ -246,7 +250,7 @@
     [toolbar setState:RFLToolbarStatusLoading withMessage:@"Loading... (Tap to Cancel)"];
     [self.navigationController setToolbarHidden:NO animated:YES];
     
-    [self.apiClient signInAttendeeWithQRCode:barcode.stringValue success:^(RFLQRSignInResponse *response) {
+    [self.apiClient signInAttendeeWithQRCode:barcode success:^(RFLQRSignInResponse *response) {
         [self processSuccessfulSignInResponse:response];
     } failure:^(NSError *error) {
         [self handleUnsuccessfulResponseWithError:error];
@@ -297,6 +301,8 @@
     
     [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeSuccess];
     [toolbar setState:RFLToolbarStatusSuccess withMessage:successMessage];
+    
+    [self updateAttendeeCountTitleWithSignedIn:response.signedInAttendeeCount total:response.totalAttendeeCount];
 }
 
 - (void)sendScanRequestForPassAssociationWithQRCode:(NSString *)qrCode
@@ -316,6 +322,7 @@
     
     id failBlock = ^(NSError *error) {
         [weakSelf handleUnsuccessfulResponseWithError:error];
+        [self resetScanningState];
     };
     
     [self.apiClient associatePassWithQRCode:qrCode toTicketID:self.currentSignInResponse.ticketID
@@ -354,8 +361,10 @@
 
 - (void)resetScanningState
 {
+    self.currentSignInResponse = nil;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        self.scanningBarcode = nil;
+        self.previouslyScannedCode = nil;
+        [self.sessionManager flushBarcodes];
     });
 }
 
