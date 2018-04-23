@@ -15,6 +15,8 @@
 @property (nonatomic, copy) NSString *error;
 @property (nonatomic, assign) BOOL hasPaid;
 @property (nonatomic, strong) RFLQRSignInUser *user;
-@property (nonatomic, copy) NSString *ticketID;
+@property (nonatomic, assign) NSInteger ticketID;
+@property (nonatomic, assign) NSInteger signedInAttendeeCount;
+@property (nonatomic, assign) NSInteger totalAttendeeCount;
 
 @end

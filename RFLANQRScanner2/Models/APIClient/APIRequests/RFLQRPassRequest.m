@@ -10,7 +10,7 @@
 
 @implementation RFLQRPassRequest
 
-- (instancetype)initWithQRCode:(NSString *)qrCode ticketID:(NSString *)ticketID password:(NSString *)password
+- (instancetype)initWithQRCode:(NSString *)qrCode ticketID:(NSInteger)ticketID password:(NSString *)password
 {
     if (self = [super init]) {
         _qrCodeValue = qrCode;

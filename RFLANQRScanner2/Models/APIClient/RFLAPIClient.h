@@ -26,7 +26,7 @@
                          failure:(void (^)(NSError *))failHandler;
 
 - (void)associatePassWithQRCode:(NSString *)qrCode
-                     toTicketID:(NSString *)ticketID
+                     toTicketID:(NSInteger)ticketID
                         success:(void (^)(RFLQRPassResponse *))successHandler
                         failure:(void (^)(NSError *))failHandler;
 

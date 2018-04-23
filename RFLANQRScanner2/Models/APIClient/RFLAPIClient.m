@@ -8,6 +8,7 @@
 
 #import "RFLAPIClient.h"
 #import <AFNetworking/AFNetworking.h>
+#import <Mantle/Mantle.h>
 
 #import "RFLQRSignInRequest.h"
 #import "RFLQRSignInResponse.h"
@@ -81,8 +82,9 @@
     
     // Success block when the request succeeds
     id requestSuccessBlock = ^(NSURLSessionDataTask *task, id responseObject) {
+        NSError *error = nil;
         RFLQRSignInResponse *response = [MTLJSONAdapter modelOfClass:RFLQRSignInResponse.class
-                                                  fromJSONDictionary:responseObject error:nil];
+                                                  fromJSONDictionary:responseObject error:&error];
         if (successHandler) { successHandler(response); }
         self.codeScanTask = nil;
     };
@@ -104,7 +106,7 @@
 }
 
 - (void)associatePassWithQRCode:(NSString *)qrCode
-                     toTicketID:(NSString *)ticketID
+                     toTicketID:(NSInteger)ticketID
                         success:(void (^)(RFLQRPassResponse *))successHandler
                         failure:(void (^)(NSError *))failHandler
 {
