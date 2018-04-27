@@ -282,26 +282,47 @@
         return;
     }
     
-    // Save the response so we can use it for the pass
-    self.currentSignInResponse = response;
-    
-    //Extract their name from the API data
-    RFLQRSignInUser *user  = response.user;
-    NSString *alias = user.alias;
-    
-    NSString *successMessage = nil;
-    NSString *customerName = alias;
+    void (^setUpPassScanBlock)(void) = ^{
+        // Save the response so we can use it for the pass
+        self.currentSignInResponse = response;
+        
+        //Extract their name from the API data
+        RFLQRSignInUser *user  = response.user;
+        NSString *alias = user.alias;
+        
+        NSString *successMessage = nil;
+        NSString *customerName = alias;
 
-    if (customerName.length) {
-        successMessage = [NSString stringWithFormat:@"Welcome, %@! (Scan Pass Now)", customerName];
+        if (customerName.length) {
+            successMessage = [NSString stringWithFormat:@"Welcome, %@! (Scan Pass Now)", customerName];
+        }
+        else {
+            successMessage = @"Sign-in successful! (Scan Pass Now)";
+        }
+        
+        [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeSuccess];
+        [toolbar setState:RFLToolbarStatusSuccess withMessage:successMessage];
+    };
+    
+    // If success was 1, but the error string isn't empty, let the admin know
+    if (response.error.length > 0) {
+        UIAlertController *controller = [UIAlertController alertControllerWithTitle:response.error
+                                                                            message:@"Do you wish to associate their ticket with a pass?"
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        [controller addAction:[UIAlertAction actionWithTitle:@"Associate Pass" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            setUpPassScanBlock();
+        }]];
+        [controller addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [toolbar setState:RFLToolbarStatusFail withMessage:response.error];
+        }]];
+        [self presentViewController:controller animated:YES completion:nil];
     }
     else {
-        successMessage = @"Sign-in successful! (Scan Pass Now)";
+        setUpPassScanBlock();
     }
     
-    [self.alertPlayer playAlertWithType:RFLAudioFeedbackTypeSuccess];
-    [toolbar setState:RFLToolbarStatusSuccess withMessage:successMessage];
-    
+    // Update the attendee count in the title bar
     [self updateAttendeeCountTitleWithSignedIn:response.signedInAttendeeCount total:response.totalAttendeeCount];
 }
 
